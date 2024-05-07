@@ -1,0 +1,108 @@
+<!--
+   install_containerd.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+				<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">3. Instalacija ContainerD Runtime na Control Node I Worker</P>
+<br>
+	
+	
+U ovome dijelu instalirat ćemo sve potrebne paketa koje ćemo koristiti u ovome tutorijalu.<br>
+Na svim radnim stanicama dodajemo repository: <br>
+<br>
+<code>dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</code><br>
+<br>
+<code>dnf install containerd.io -y</code><br>
+<br>
+Konfiguriramo containerd da koristi “systemdcgroup”.<br>
+<br>
+Backup: <br>
+<br>
+<code>mv /etc/containerd/config.toml /etc/containerd/config.toml.orginal</code><br>
+<br>
+Generiramo novi file<br>
+<br>
+<code>containerd config default > /etc/containerd/config.toml</code><br>
+<br>
+<code>vim /etc/containerd/config.toml</code><br>
+<br>
+Postavljamo SystemdCgroup parametar <br>
+<br>
+<code>... Omitted Output ... </code><br>
+<br>
+<code>[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]</code><br>
+<code>BinaryName = ""</code><br>
+<code>CriuImagePath = ""</code><br>
+<code>CriuPath = ""</code><br>
+<code>CriuWorkPath = ""</code><br>
+<code>IoGid = 0</code><br>
+<code>IoUid = 0</code><br>
+<code>NoNewKeyring = false</code><br>
+<code>NoPivotRoot = false</code><br>
+<code>Root = ""</code><br>
+<code>ShimCgroup = ""</code><br>
+<code><b>SystemdCgroup = false</b></code><br>
+<br>
+<code>... Omitted Output ... </code><br>
+<br>
+Postavljamo kao: <br>
+<br>
+<code><b>SystemdCgroup = true</b></code>
+<br>
+<br>
+
+<code>systemctl start containerd.service</code><br>
+<code>systemctl restart containerd</code><br>
+<code>systemctl enable containerd</code><br>
+<code>systemctl status containerd</code><br>
+<br>
+Command tool <b>ctr</b> je sad dostupan
+
+
+
+
+	
+	
+	
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="kernel_moduli.html">Prethodna</a> | <a href="install_kube.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+
+</html>

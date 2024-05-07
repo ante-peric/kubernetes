@@ -1,0 +1,465 @@
+<!--
+   rcontroller.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+																<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">4.9.1. Replication Controller</P>
+<br>
+Replication Controller također mora sadržavati 4 osnovne sekcije kao I POD.<br>
+
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>apiVersion:<br>
+kind:<br>
+metadata:<br>
+
+spec:<br></code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+<b>apiVersion</b> je podržan kao “v1”.<br>
+<b>kind</b> je podržan kao Replication Controller<br><br>
+Kreiramo primjer:<br>
+
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+apiVersion: v1<br>
+kind: ReplicationController<br>
+metadata:<br>
+&ensp; name: telefonski-imenik-repliction-controller<br>
+&ensp; labels:<br>
+&emsp; &emsp;    app: tel-imenik-app<br>
+&emsp; &emsp;    type: jsp<br>
+            </code></td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br>
+Ovaj dio je sličan kao I kod PODS. Najkritičniji dio je spec:
+
+Prvo se kreira “template” sekciju unutar spec sekcije.<br><br>
+
+Primjer: 
+<br><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+
+        </tr>
+        <tr>
+            <td>
+<code>
+spec:<br>
+&ensp; template:<br>
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+&ensp; &ensp; POD
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+ 
+            </code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br><br>
+Unutar POD dijela dodajemo kao što smo dodavali kod kreiranja POD. 
+
+Dodajemo cijeli dio <b>metadata</b> I <b>spec</b> kao child od <b>“template”</b><br><br>
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+metadata:<br>
+&ensp;  name: myapplication-rc<br>
+&ensp;  labels:<br>
+&ensp; &ensp;    app: moja_aplikacija<br>
+&ensp; &ensp;    type: front-end<br><br>
+
+spec: <br>
+&ensp;  containers:<br>
+&ensp;  - name: nginx-container<br>
+&ensp; &ensp;    image: nginx<br>
+
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+Tako da dobijemo sljedeće unutar “template” kao “child”<br><br>
+
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+spec:<br>
+&ensp;  template:<br>
+&ensp; &ensp;    metadata:<br>
+&ensp; &ensp; &ensp;      name: telefonski-imeni<br>
+&ensp; &ensp; &ensp;      labels:<br>
+&ensp; &ensp; &ensp; &ensp;        app: telefonski-imenik-app<br>
+&ensp; &ensp; &ensp; &ensp;        type: jsp<br><br>
+
+&ensp; &ensp;    spec:<br>
+&ensp; &ensp; &ensp;      containers:<br>
+&ensp; &ensp; &ensp;      - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp;         image: nginx<br>
+
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<br>
+Sad imamo file kao ovaj:<br>
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+
+apiVersion: v1<br>
+kind: ReplicationController<br>
+metadata:<br>
+&ensp;  name: telefonski-imenik-repliction-controller<br>
+&ensp;  labels:<br>
+&ensp; &ensp;    app: tel-imenik-app<br>
+&ensp; &ensp;    type: jsp<br><br>
+
+
+spec:<br>
+&ensp;  template:<br>
+&ensp; &ensp;    metadata:<br>
+&ensp; &ensp; &ensp;      name: telefonski-imeni<br>
+&ensp; &ensp; &ensp;      labels:<br>
+&ensp; &ensp; &ensp; &ensp;        app: telefonski-imenik-app<br>
+&ensp; &ensp; &ensp; &ensp;        type: jsp<br><br>
+
+&ensp; &ensp;    spec:<br>
+&ensp; &ensp; &ensp;      containers:<br>
+&ensp; &ensp; &ensp;       - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp;        image: nginx<br>
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+
+Za kreiranje Replication Controler dodajemo još jedno svojstvo “replicas”<br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+spec:<br>
+&ensp;  template<br>
+&ensp;  |<br>
+&ensp;  |<br>
+&ensp;  |<br>
+&ensp;  replicas: 3<br>
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br><br>
+Broj tri znači da ćemo imati tri (identočna pod – a). Imamo finalni file.
+<br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+apiVersion: v1<br>
+kind: ReplicationController<br>
+metadata:<br>
+&ensp;  name: telefonski-imenik-repliction-controller<br>
+&ensp;  labels:<br>
+&ensp; &ensp;    app: tel-imenik-app<br>
+&ensp; &ensp;    type: jsp<br><br>
+
+
+spec:<br>
+&ensp;  template:<br>
+&ensp; &ensp;    metadata:<br>
+&ensp; &ensp; &ensp;      name: telefonski-imenik<br>
+&ensp; &ensp; &ensp;      labels:<br>
+&ensp; &ensp; &ensp; &ensp;        app: telefonski-imenik-app<br>
+&ensp; &ensp; &ensp; &ensp;        type: jsp<br><br>
+
+&ensp; &ensp;    spec:<br>
+&ensp; &ensp; &ensp;      containers:<br>
+&ensp; &ensp; &ensp;      - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp;        image: nginx<br><br>
+
+&ensp; &ensp;  replicas: 3<br>
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br><br>
+Kreiramo Replication Controller. (ovo je u fileu naziva:rc.yml)<br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+kubectl create -f rs.yml
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br><br>
+
+	Provjera:<br><br>
+	<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+$ kubectl get replicationcontrollers <br>
+NAME                                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; DESIRED   &ensp; &ensp; CURRENT   &ensp; &ensp; READY   &ensp; &ensp; AGE<br>
+telefonski-imenik-repliction-controller   &ensp; &ensp; &ensp; &ensp; 3         &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;3         &ensp; &ensp; &ensp; &ensp; &ensp; 3       &ensp; &ensp; 92s<br>
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br>
+	<br><br>
+	
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>
+[ante@controlkube ~]$ kubectl get pods<br>
+NAME                                            READY   STATUS    RESTARTS        AGE<br>
+peric                                           1/1     Running   3 (5h43m ago)   3d4h<br>
+
+telefonski-imenik-repliction-controller-d45w7   1/1     Running   0               3m16s<br>
+
+telefonski-imenik-repliction-controller-fcrwf   1/1     Running   0               3m16s<br>
+
+telefonski-imenik-repliction-controller-xsgz8   1/1     Running   0               3m16s<br>
+
+web                                             1/1     Running   6 (5h43m ago)   6d5h<br>
+
+web1                                            1/1     Running   3 (5h43m ago)   3d1h<br>
+</code>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br><br>
+	
+	
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="replica_controller.html">Prethodna</a> | <a href="rs.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

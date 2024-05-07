@@ -1,0 +1,132 @@
+<!--
+   install_kubernetes.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+					<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">3.1 Instalacija Kubernetes software na Control Node</P>
+<br>
+Na radnoj stanici kreiramo repository. <br><br>
+<code>vim /etc/yum.repos.d/kubernetes.repo</code><br><br>
+
+
+<style>
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>[kubernetes]<br>
+name=Kubernetes<br>
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/<br>
+enabled=1<br>
+gpgcheck=1<br>
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key<br>
+exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni</code></td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br>
+<br>
+Instaliramo:<br>
+<br>
+<code>yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes</code><br>
+<br>
+<code>systemctl enable --now kubelet.service</code><br><br>
+Sa ovom instalacijom dobili smo tools:<br><br>
+<ul>
+  <li>kubelet</li>
+  <li>kubectl</li>
+  <li>kubeadm</li>
+</ul>  
+<br><br>
+Ostale naredbe:<br><br>
+<code>systemctl status kubelet.service</code><br><br>
+<code>systemctl restart kubelet.service</code><br><br>
+<code>systemctl stop kubelet.service</code><br><br>
+Dodajemo Bash Completation  <br><br>
+<code>source <(kubectl completion bash)</code><br><br>
+<code>kubectl completion bash > /etc/bash_completion.d/kubectl</code><br><br>
+
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="install_containerd.html">Prethodna</a> | <a href="inicijalizacija.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+
+</html>

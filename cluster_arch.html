@@ -1,0 +1,79 @@
+<!--
+   cluster_arch.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+								<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">4. Cluster Architecture</P>
+<br>
+Kubernetes Architecture se sastoji od dvije ili više radne stanice. <br><br>
+Svaki Kubernetes Cluster se sastoji od:<br><br>
+<ul>
+  <li><b>CONTROL NODE</b></li>
+</ul> 
+Upravlja Worker radnim stanicama, planira koji container ide gdje, planira raspored zadataka I slično.<br> On sadrži više komponenti pomoću kojih upravlja cijelim Clusterom. 
+	<ul>
+  <li><b>Kube-apiserver</b>– Glavna komponenta koja upravlja svim komponentama  Cluster – a </li>
+  <li><b>ETCD Cluster</b>– Služi za pohranu podataka u key-value formatu </li>
+  <li><b>kube-scheduler</b>- Služi za upravljanje I identifikaciju containera </li>
+  
+  <b><li><b>Controller Manager:</b></li></b><br>
+  
+  <ol>
+  <li><b>Node – Controller</b></li>
+  <li><b>Replication – Controller</b></li>
+</ol> 
+  </li>
+</ul><br><br>
+ 
+ <ul>
+  <li><b>WORKER NODE</b></li>
+</ul>
+<ul>
+  <li><b>kubelet</b>– Sluša naredbe kube-apiserver te odrađuje zadatke kao kreiranje I uništavanje container – a </li>
+  <li><b>Kube – proxy</b>    • – Služi za komunikaciju između worker radnih stanica
+</li>
+</ul>
+
+	
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="dodavanje_workera.html">Prethodna</a> | <a href="doc_vs_cond.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+
+</html>

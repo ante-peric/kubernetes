@@ -1,0 +1,537 @@
+<!--
+   inicijalizacija.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+						<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">3.1.1. Inicijalizacija</P>
+<br>
+<style>
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+
+Inicijaliziramo Kubernetes Cluster s Control Node sa naredbom: <br><br>
+<code>kubeadm init --control-plane-endpoint=controlkube</code><br><br>
+Output: <br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+				<code>[root@controlkube ~]# kubeadm init --control-plane-endpoint=controlkube<br>
+I0419 20:06:41.483007    6759 version.go:256] remote version is much newer: v1.30.0; falling back to: stable-1.28<br>
+[init] Using Kubernetes version: v1.28.9<br>
+[preflight] Running pre-flight checks<br>
+	[WARNING Firewalld]: firewalld is active, please ensure ports [6443 10250] are open or your cluster may not function correctly<br>
+[preflight] Pulling images required for setting up a Kubernetes cluster<br>
+[preflight] This might take a minute or two, depending on the speed of your internet connection<br>
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'<br>
+W0419 20:07:26.348607    6759 checks.go:835] detected that the sandbox image "registry.k8s.io/pause:3.6" of the container runtime is inconsistent with that used by kubeadm. It is recommended that using "registry.k8s.io/pause:3.9" as the CRI sandbox image.<br>
+[certs] Using certificateDir folder "/etc/kubernetes/pki"<br>
+[certs] Generating "ca" certificate and key<br>
+[certs] Generating "apiserver" certificate and key<br>
+[certs] apiserver serving cert is signed for DNS names [controlkube controlkube.caksonic.local kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 192.168.122.120]<br>
+[certs] Generating "apiserver-kubelet-client" certificate and key<br>
+[certs] Generating "front-proxy-ca" certificate and key<br>
+[certs] Generating "front-proxy-client" certificate and key<br>
+[certs] Generating "etcd/ca" certificate and key<br>
+[certs] Generating "etcd/server" certificate and key<br>
+[certs] etcd/server serving cert is signed for DNS names [controlkube.caksonic.local localhost] and IPs [192.168.122.120 127.0.0.1 ::1]<br>
+[certs] Generating "etcd/peer" certificate and key<br>
+[certs] etcd/peer serving cert is signed for DNS names [controlkube.caksonic.local localhost] and IPs [192.168.122.120 127.0.0.1 ::1]<br>
+[certs] Generating "etcd/healthcheck-client" certificate and key<br>
+[certs] Generating "apiserver-etcd-client" certificate and key<br>
+[certs] Generating "sa" key and public key<br>
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"<br>
+[kubeconfig] Writing "admin.conf" kubeconfig file<br>
+[kubeconfig] Writing "kubelet.conf" kubeconfig file<br>
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file<br>
+[kubeconfig] Writing "scheduler.conf" kubeconfig file<br>
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"<br>
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"<br>
+[control-plane] Creating static Pod manifest for "kube-apiserver"<br>
+[control-plane] Creating static Pod manifest for "kube-controller-manager"<br>
+[control-plane] Creating static Pod manifest for "kube-scheduler"<br>
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"<br>
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"<br>
+[kubelet-start] Starting the kubelet<br>
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s<br>
+[apiclient] All control plane components are healthy after 15.006922 seconds<br>
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace<br>
+[kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster<br>
+[upload-certs] Skipping phase. Please see --upload-certs<br>
+[mark-control-plane] Marking the node controlkube.caksonic.local as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]<br>
+[mark-control-plane] Marking the node controlkube.caksonic.local as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]<br>
+[bootstrap-token] Using token: 27sp8s.fifnnuvs555r04c8<br>
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles<br>
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes<br>
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials<br>
+[bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token<br>
+[bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster<br>
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace<br>
+[kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key<br>
+[addons] Applied essential addon: CoreDNS<br>
+[addons] Applied essential addon: kube-proxy<br>
+
+Your Kubernetes control-plane has initialized successfully!<br><br>
+
+To start using your cluster, you need to run the following as a regular user:<br><br>
+
+  mkdir -p $HOME/.kube<br>
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config<br>
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config<br><br>
+
+Alternatively, if you are the root user, you can run:<br><br>
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf<br><br>
+
+You should now deploy a pod network to the cluster.<br>
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:<br>
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/<br><br>
+
+You can now join any number of control-plane nodes by copying certificate authorities<br>
+and service account keys on each node and then running the following as root:<br><br>
+
+  kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \<br>
+	--discovery-token-ca-cert-hash sha256:356d70e8d25cfed9372e5a681243b46ddda92dcba878107f6e22346468c5bc39 \<br>
+	--control-plane <br><br>
+
+Then you can join any number of worker nodes by running the following on each as root:<br><br>
+
+kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \<br>
+	--discovery-token-ca-cert-hash sha256:356d70e8d25cfed9372e5a681243b46ddda92dcba878107f6e22346468c5bc39 <br>
+[root@controlkube ~]#</code><br>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br><br>
+Postavljamo KUBECONFIG varijablu za korisnika koji će upravljati Kubernetes Clusterom.<br><br>
+<code># su - ante</code><br><br>
+<code>$ mkdir -p $HOME/.kube</code><br><br>
+<code>$  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</code><br><br>
+<code>sudo chown $(id -u):$(id -g) $HOME/.kube/config</code><br><br>
+<code>export KUBECONFIG=\$HOME/.kube/config</code><br><br>
+Ovo će raditi na trenutnoj sessiji a ako želimo da radi I poslje reboot uređujemo file kao root korisnik. <br><br>
+<code>$ vim /etc/bashrc</code><br><br>
+<code>export KUBECONFIG=\$HOME/.kube/config</code><br><br>
+Provjera Dostupnih Nodova: (možemo I restartirati servis)<br><br>
+<code>[ante@controlkube ~]$ sudo systemctl restart kubelet</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>kubectl get nodes<br>
+NAME                       STATUS     ROLES           AGE   VERSION<br>
+controlkube.caksonic.local NotReady   control-plane   17m   v1.28.2</code><br><br>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br>
+Provjera Dostupnih Komponenti<br><br>
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+     
+        </tr>
+        <tr>
+            <td>
+<code>kubectl get pods --all-namespaces<br>
+NAMESPACE     NAME                                                 READY   STATUS    RESTARTS   AGE<br>
+kube-system   coredns-5dd5756b68-7xnrm                             0/1     Pending   0          21m<br>
+kube-system   coredns-5dd5756b68-jtb8g                             0/1     Pending   0          21m<br>
+kube-system   etcd-controlkube.caksonic.local                      1/1     Running   0          21m<br>
+kube-system   kube-apiserver-controlkube.caksonic.local            1/1     Running   0          21m<br>
+kube-system   kube-controller-manager-controlkube.caksonic.local   1/1     Running   0          21m<br>
+kube-system   kube-proxy-btm6f                                     1/1     Running   0          21m<br>
+kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Running   0          21m</code><br>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br><br>
+
+
+
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color:  #000000;
+    padding: 5px;
+}
+</style>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+
+        <tr>
+            <td>NAMESPACE</td>
+            <td>kube-system</td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td>coredns-5dd5756b68-7xnrm</td>
+        </tr>
+        <tr>
+            <td>READY</td>
+            <td>0/1</td>
+        </tr>
+        <tr>
+            <td>STATUS</td>
+            <td>Pending</td>
+        </tr>
+        <tr>
+            <td>RESTARTS</td>
+            <td>0</td>
+        </tr>
+         <tr>
+            <td>AGE</td>
+            <td>21m</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+<center>Tablica 3</center><br><br>
+</div>
+
+
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+
+        <tr>
+            <td>NAMESPACE</td>
+            <td>kube-system</td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td>coredns-5dd5756b68-jtb8g</td>
+        </tr>
+        <tr>
+            <td>READY</td>
+            <td>0/1</td>
+        </tr>
+        <tr>
+            <td>STATUS</td>
+            <td>Pending</td>
+        </tr>
+        <tr>
+            <td>RESTARTS</td>
+            <td>0</td>
+        </tr>
+         <tr>
+            <td>AGE</td>
+            <td>21m</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+<center>Tablica 4</center><br><br>
+</div>
+
+NAPOMENA: Ovdje je coredns (DNS otkrivanje) u PENDING stanju. Treba se instalirat Network Addon<br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+
+        <tr>
+            <td>NAMESPACE</td>
+            <td>kube-system</td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td>etcd-controlkube.caksonic.local</td>
+        </tr>
+        <tr>
+            <td>READY</td>
+            <td>1/1</td>
+        </tr>
+        <tr>
+            <td>STATUS</td>
+            <td>Running</td>
+        </tr>
+        <tr>
+            <td>RESTARTS</td>
+            <td>0</td>
+        </tr>
+         <tr>
+            <td>AGE</td>
+            <td>21m</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+<center>Tablica 5</center><br><br>
+</div>
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+
+        <tr>
+            <td>NAMESPACE</td>
+            <td>kube-system</td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td>kube-apiserver-controlkube.caksonic.local</td>
+        </tr>
+        <tr>
+            <td>READY</td>
+            <td>1/1</td>
+        </tr>
+        <tr>
+            <td>STATUS</td>
+            <td>Running</td>
+        </tr>
+        <tr>
+            <td>RESTARTS</td>
+            <td>0</td>
+        </tr>
+         <tr>
+            <td>AGE</td>
+            <td>21m</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+<center>Tablica 6</center><br><br>
+</div>
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+
+        <tr>
+            <td>NAMESPACE</td>
+            <td>kube-system</td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td>kube-controller-manager-controlkube.caksonic.local</td>
+        </tr>
+        <tr>
+            <td>READY</td>
+            <td>1/1</td>
+        </tr>
+        <tr>
+            <td>STATUS</td>
+            <td>Running</td>
+        </tr>
+        <tr>
+            <td>RESTARTS</td>
+            <td>0</td>
+        </tr>
+         <tr>
+            <td>AGE</td>
+            <td>21m</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+<center>Tablica 6</center><br><br>
+</div>
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+
+        <tr>
+            <td>NAMESPACE</td>
+            <td>kube-system</td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td>kube-proxy-btm6f</td>
+        </tr>
+        <tr>
+            <td>READY</td>
+            <td>1/1</td>
+        </tr>
+        <tr>
+            <td>STATUS</td>
+            <td>Running</td>
+        </tr>
+        <tr>
+            <td>RESTARTS</td>
+            <td>0</td>
+        </tr>
+         <tr>
+            <td>AGE</td>
+            <td>21m</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+<center>Tablica 7</center><br><br>
+</div>
+
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+
+        <tr>
+            <td>NAMESPACE</td>
+            <td>kube-system</td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td>kube-scheduler-controlkube.caksonic.local</td>
+        </tr>
+        <tr>
+            <td>READY</td>
+            <td>1/1</td>
+        </tr>
+        <tr>
+            <td>STATUS</td>
+            <td>Running</td>
+        </tr>
+        <tr>
+            <td>RESTARTS</td>
+            <td>0</td>
+        </tr>
+         <tr>
+            <td>AGE</td>
+            <td>21m</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table><br>
+<center>Tablica 8</center><br><br>
+</div>
+
+
+
+	
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="install_kube.html">Prethodna</a> | <a href="calico_network.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

@@ -1,0 +1,237 @@
+<!--
+   firewall.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+			<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">2.5. Firewall</P>
+<br>
+Za komunikaciju između radnih stanica potrebno je kreirati pravila unutar Firewall. 
+<br>
+Master Node:
+<br>
+Na Master Node podešavamo Firewall: 
+<br>
+<br>
+<style>
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+    color: #000000;
+    padding: 5px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+    padding: 5px;
+}
+</style>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+            <th>Port Number</th>
+            <th>Protocol</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>6443</td>
+            <td>TCP – Kubernetes API Server</td>
+        </tr>
+        <tr>
+            <td>2379</td>
+            <td>TCP – etcd Server Client API</td>
+        </tr>
+        <tr>
+            <td>2380</td>
+            <td>TCP - etcd Server Client API</td>
+        </tr>
+        <tr>
+            <td>10250</td>
+            <td>TCP – Kubelet API</td>
+        </tr>
+        <tr>
+            <td>10251</td>
+            <td>TCP - kube-scheduler</td>
+        </tr>
+        <tr>
+            <td>10252</td>
+            <td>TCP – kube-controller-manager</td>
+        </tr>
+        <tr>
+            <td>10257</td>
+            <td>TCP</td>
+        </tr>
+        <tr>
+            <td>10259</td>
+            <td>TCP</td>
+        </tr>
+        <tr>
+            <td>179</td>
+            <td>TCP</td>
+        </tr>
+        <tr>
+            <td>4789</td>
+            <td>UDP</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<center>Tablica 2 </center>
+</div>
+
+<br>
+<code>firewall-cmd --permanent --add-port={6443,2379,2380,10250,10251,10252,10257,10259,179}/tcp</code>
+<br>
+<br>
+<code>firewall-cmd --permanent –add-port=4789/udp</code>
+<br>
+<br>
+<code>firewall-cmd --reload</code>
+<br>
+<br>
+Workers:
+
+Na svakoj worker radnoj stanici podešavamo Firewall pravilo:
+<br>
+<br>
+<style>
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+
+    color: #000000;
+    padding: 5px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table_component" role="region" tabindex="0">
+<table>
+    <thead>
+        <tr>
+            <th>Port Number</th>
+            <th>Protocol</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>179</td>
+            <td>TCP</td>
+        </tr>
+        <tr>
+            <td>10250</td>
+            <td>TCP</td>
+        </tr>
+        <tr>
+            <td>30000-32767</td>
+            <td>TCP</td>
+        </tr>
+        <tr>
+            <td>4789</td>
+            <td>UDP</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<center>Tablica 3</center>
+</div>
+<br>
+<br>
+<code>firewall-cmd --permanent --add-port={179,10250,30000-32767}/tcp</code>
+<br>
+<br>
+<code>firewall-cmd --permanent --add-port=4789/udp</code>
+<br>
+<br>
+<code>firewall-cmd --reload</code>
+<br>
+<br>
+
+	
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="selinux.html">Prethodna</a> | <a href="kernel_moduli.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+
+</html>

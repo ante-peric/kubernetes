@@ -1,0 +1,68 @@
+<!--
+   kube_control_m.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+											<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">4.4. Kube Controller Management</P>
+<br>
+	
+	
+Upravlja kontrolorima u Kubernetes Clusteru. Controller je proces koji stalno nadzire stanje određene komponente.<br> 
+
+Imamo dva glavna od mnogih:<br><br>
+<b>Node Controller</b> – Nadzire status nardnih stanica u Cluster – u. <br>
+Nadzorni period je 5 sekundi I u slucaju ako je jedan/a radna stanica nedostupna označava je kao UNREACHIBLE I čeka 40 sekundi  da je označi kao UNREACHIBLE. <br>
+Nakon što je node označen kao UNREACHIBLE daje 5 minuta nodu sa se ukljuci u Cluster I ako se u tih 5 minuta ne uključi u Cluster uklanja taj pod I uključuje u drugi pod ako je postavljen replica setup.<br><br>
+
+<b>Replication Controller</b> je odgovoran za nadziranje stanja replika u Clusteru<br>
+<ul>
+  <li>CronJob</li>
+  <li>Job - Controller</li>
+  <li>Endpoint – Controller</li>
+  <li>itd, ...</li>
+</ul> 
+
+	
+</body>
+
+<hr style="color:#ffb380">
+<center><p><a href="kube-apiserver.html">Prethodna</a> | <a href="kube_sch.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+
+</html>

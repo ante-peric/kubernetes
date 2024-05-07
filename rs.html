@@ -1,0 +1,178 @@
+<!--
+   rs.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+	
+																	<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">4.9.2. ReplicaSet</P>
+<br>
+	
+	ReplicaSet ima istu ulogu kao ReplicationControler I ona je novi standard koji se treba koristiti.<br>
+
+Sve je isto kod kreiranja kao kod ReplicationControler osim što imamo malih razlika kao što su:<br><br>
+
+	<b> appVersion: apps/v1.</b><br>
+	<code>apiVersion: apps/v1</code>
+	<br><br>
+	<b>kind: ReplicaSet</b><br>
+	<code>kind: ReplicaSet</code><br><br>
+	<b>metadata</b> > ista<br>
+	<code>
+	metadata:<br>
+&ensp;   name: telefonski-imenik-repliction-controller<br>
+&ensp;   labels:<br>
+&ensp; &ensp;     app: tel-imenik-app<br>
+&ensp; &ensp;     type: jsp<br>
+	</code>
+	<br><br<
+	<b>spec: </b><br><br>
+	spec sekcija je vrlo slična I ima jednu razliku. Počinjemo kao I kod ReplicationControler sa “template”. Kao u primjeru ReplicationControler
+	<br><br>
+	<code>
+	spec:<br>
+&ensp;  template:<br>
+&ensp; &ensp;    metadata:<br>
+&ensp; &ensp; &ensp;      name: telefonski-imenik<br>
+&ensp; &ensp; &ensp;      labels:<br>
+&ensp; &ensp; &ensp; &ensp;        app: telefonski-imenik-app<br>
+&ensp; &ensp; &ensp; &ensp;        type: jsp<br><br>
+
+&ensp; &ensp;    spec:<br>
+&ensp; &ensp; &ensp;      containers:<br>
+&ensp; &ensp; &ensp;       - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp;         image: nginx<br><br>
+
+&ensp;  replicas: 3<br>
+	</code>
+	<br><br>
+	Razlika je u tome što ReplicaSet zahtjeva “selector” definiciju. <br>
+	Selector definicija pomaže ReplicaSet u identifikaciji koji POD je pod njom.<br>
+	 Dakle selector služi da daje informaciju ReplicaSet – u koji su POD – I pod određenom ReplicaSet. 
+	<br><br>
+	Razlog ovome je taj što ReplicaSet također može upravljati POD – a koji nisu kreirani kao dio ReplicaSet – a. <br><br>
+	selector: Example<br><br>
+	<code>
+	selector:<br>
+&ensp;  matchLabels:<br>
+&ensp; &ensp;    type: front-end<br>
+	</code>
+	
+	<br><br>
+	MatchLabels (labels: type) iz POD metadata mora biti jednak u selectoru.<br><br>
+	<code>
+	apiVersion: apps/v1<br>
+kind: ReplicaSet<br>
+metadata:<br>
+&ensp;  name: password-keeper-replicaset<br>
+&ensp;  labels:<br>
+&ensp; &ensp;    app: password-keeper-app<br>
+&ensp; &ensp;    type: jsp1<br><br>
+
+
+spec:<br>
+&ensp;  template:<br>
+&ensp; &ensp;    metadata:<br>
+&ensp;&ensp;&ensp;      name: password-keeper<br>
+&ensp; &ensp; &ensp;      labels:<br>
+&ensp; &ensp; &ensp; &ensp;        app: password-keeper-app<br>
+&ensp; &ensp; &ensp; &ensp;        <code style="color:red;">type: jsp</code><br><br>
+
+&ensp; &ensp;    spec:<br>
+&ensp; &ensp; &ensp;      containers:<br>
+&ensp; &ensp; &ensp;       - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp;        image: nginx<br><br>
+
+&ensp;  replicas: 3<br>
+&ensp;  selector:<br>
+&ensp; &ensp;    matchLabels:<br>
+&ensp; &ensp; &ensp;      <code style="color:red;"> type: jsp</code><br>
+	
+	</code>
+	<br><br>
+Provjera:<br><br>
+
+<code>
+$ kubectl get replicaset<br>
+NAME                         &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; DESIRED   CURRENT   READY   AGE<br>
+password-keeper-replicaset   3        &ensp; &ensp; &ensp; 3        &ensp; &ensp; &ensp; 3      &ensp; &ensp; 44m<br>
+</code>
+<br>
+<code>
+
+
+[ante@controlkube ~]$ kubectl get replicasets.apps <br>
+NAME                         &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; DESIRED   CURRENT   READY   AGE<br>
+password-keeper-replicaset   3        &ensp; &ensp; &ensp;   3        &ensp;  &ensp;  &ensp; 3       &ensp;  &ensp;  44m<br>
+
+</code>
+<br><br>
+
+
+
+
+<code>
+[ante@controlkube ~]$ kubectl get pods<br>
+NAME                                            READY   STATUS    RESTARTS     AGE<br>
+<b>password-keeper-replicaset-g7s9b                1/1     Running   0            45m</b><br>
+
+<b>password-keeper-replicaset-p9qf2                1/1     Running   0            45m</b><br>
+
+<b>password-keeper-replicaset-rfr4s                1/1     Running   0            45m</b><br>
+
+peric                                           1/1     Running   3 (8h ago)   3d7h<br>
+
+telefonski-imenik-repliction-controller-d45w7   1/1     Running   0            170m<br>
+
+telefonski-imenik-repliction-controller-fcrwf   1/1     Running   0            170m<br>
+
+telefonski-imenik-repliction-controller-xsgz8   1/1     Running   0            170m<br>
+
+web                                             1/1     Running   6 (8h ago)   6d8h<br>
+
+web1                                            1/1     Running   3 (8h ago)   3d4h<br>
+</code>
+<br>
+
+	
+	
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="rcontroller.html">Prethodna</a> | <a href="scale_rs.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

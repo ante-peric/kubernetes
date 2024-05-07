@@ -1,0 +1,144 @@
+<!--
+   doc_vs_cond.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+								<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%">4.1. Docker vs containerD</P>
+<br>
+	U Kubernetes Cluster – možemo koristit više “Runtime” oruđa kao što su:<br>
+	<ul>
+  <li><b>rkt</b></li>
+  <li><b>docker</b></li>
+</ul>  
+U razvitku Kubernetes tehnologije došlo je do nekih promjena kod samih proizvođača I runtime tehnologije koje poštuju pravilo CRI – Container Runtime Interface mogu biti implementirane u Kubernetes. <br>
+Pravilo se zove OCI – Open Container Initiative I sadrži dvije stavke:<br>
+	<ul>
+  <li><b>imagespec</b></li>
+  <li><b>runtimespec</b></li>
+</ul>  
+Doker nije gradjen da podrži ove standarde pa je Kubernetes zajednica kreirala privremeno rješenje preko “dockershim” tehnologije da se nastavi korištenje Docker techologije.<br>
+ Ali ovo rješenje je bilo privremeno. Nakon što je Docker kreirao tehnologiju koja za je unaprijedila kreiranje, upravljanje I slično I nazvana containerd moglo se nastaviti sa korištanjem Kubernetesa. <br>
+ Iako je containerd dio Docker tehnoligije može se koristiti odvojeno od Docker tehnologije.<br>
+  Dakle, može se instalirati containerd runtime I upravljati containerima.<br><br>
+  Containerd dolazi s sljedećim command line alatima:<br>
+  	<ul>
+  <li><b>ctr</b></li>
+  <li><b>nerdctl</b></li>
+  <li><b>crictl</b></li>
+</ul>  
+ <b>ctr</b> – nije user frendly I koristi se rijetko<br>
+<br>
+Alternativa je korištenje <b>nerdctl</b> command line koji ima skoro pa sve naredbe slične docker naredbi<br><br>
+
+Jos jedan command utillty koji je kreiran od strane Kubernetes je <b>crictl </b>I pomoću ovog oruđa možemo koristiti naredbe između različitih runtime proizvođača.<br>
+ Instalira se posebno I koristi se većinim za debugging. <br><br>
+ Lokacija end – point <br><br>
+ <code>unix:///run/containerd/containerd.sock</code><br>
+ <code>unix:///run/crio/crio.sock</code><br>
+ <code>unix://run/var/run/cri-dockerd.sock</code>
+<br><br>
+Ukratko:<br><br>
+<style>
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+            <th>Containerd</th>
+            <th>Kubernetes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ctr – Debugging</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ctr – Debugging</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>crlictl - Debugging</td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+	
+	
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="cluster_arch.html">Prethodna</a> | <a href="etcd_basic.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>
