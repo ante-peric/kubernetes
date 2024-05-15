@@ -39,7 +39,7 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">2.5. Firewall</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"> <b>2.5. Firewall</b></P>
 <br>
 Za komunikaciju između radnih stanica potrebno je kreirati pravila unutar Firewall. 
 <br>
@@ -80,6 +80,10 @@ Na Master Node podešavamo Firewall:
     padding: 5px;
 }
 </style>
+
+
+
+
 <div class="table_component" role="region" tabindex="0">
 <table>
 
@@ -133,17 +137,73 @@ Na Master Node podešavamo Firewall:
     </tbody>
 </table>
 <br>
-<center>Tablica 2 </center>
+<center>Tablica 2. Master Node Portovi</center><br>
+
 </div>
 
-<br>
-<code>firewall-cmd --permanent --add-port={6443,2379,2380,10250,10251,10252,10257,10259,179}/tcp</code>
-<br>
-<br>
-<code>firewall-cmd --permanent –add-port=4789/udp</code>
-<br>
-<br>
-<code>firewall-cmd --reload</code>
+
+
+
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+firewall-cmd --permanent --add-port={6443,2379,2380,10250,10251,10252,10257,10259,179}/tcp<br>
+firewall-cmd --permanent –add-port=4789/udp<br>
+firewall-cmd --reload<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
 <br>
 <br>
 Workers:
@@ -214,19 +274,34 @@ Na svakoj worker radnoj stanici podešavamo Firewall pravilo:
     </tbody>
 </table>
 <br>
-<center>Tablica 3</center>
+<center>Tablica 3. Workers Node Portovi</center>
 </div>
 <br>
 <br>
-<code>firewall-cmd --permanent --add-port={179,10250,30000-32767}/tcp</code>
-<br>
-<br>
-<code>firewall-cmd --permanent --add-port=4789/udp</code>
-<br>
-<br>
-<code>firewall-cmd --reload</code>
-<br>
-<br>
+
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+
+        </tr>
+
+        <tr>
+            <td>
+				<p style="color: #2ecc71">        <code>  firewall-cmd --permanent --add-port={179,10250,30000-32767}/tcp<br>
+   firewall-cmd --permanent --add-port=4789/udp<br>
+   firewall-cmd --reload</p> </code>
+            </td>
+            
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
 
 	
 </body>

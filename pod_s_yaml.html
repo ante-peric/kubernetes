@@ -39,7 +39,7 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">4.8.1. POD sa yaml</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.8.1. POD sa yaml</P></b>
 <br>
 
 Pretpostavimo da je Cluster kreiran I pokrenut. Za kreiranje container – a tj POD to možemo odraditi I s file – m. <br>
@@ -99,18 +99,20 @@ Syntax file – a.<br>
         </tr>
         <tr>
             <td>
-<code>apiVersion:<br>
+<p style="color: #2ecc71"><code>apiVersion:<br>
 kind:<br>
 metadata:<br>
 <br>
-<br>
-spec:</code>
+
+spec:</code></p>
 
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+<br>
+<center>Tablica 13. POD syntax file</center>
 <br><br>
 
 
@@ -157,12 +159,14 @@ spec:</code>
 
         </tr>
         <tr>
-            <td><b>apiVersion</b> – Srting Vrijednost</td>
+            <td><b>apiVersion</b> – String Vrijednost</td>
             <td>Označava verziju Kubernetes API za kreiranje objekta</td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+<br>
+<center>Tablica 14. POD apiVersion</center>
 </div>
 <br>
 Mogućnosti:<br><br>
@@ -234,6 +238,8 @@ Mogućnosti:<br><br>
     <tbody></tbody>
 </table>
 </div>
+<br>
+<center>Tablica 15. Pod apiVersion mogućnosti</center>
 <br><br>
 
 
@@ -289,6 +295,8 @@ String Vrijednost</td>
     <tbody></tbody>
 </table>
 </div>
+<br>
+<center>Tablica 16. pod – kind </center>
 <br><br>
 
 
@@ -334,13 +342,15 @@ String Vrijednost</td>
 
         </tr>
         <tr>
-            <td><b>Metadata</b> – Form of Dictionary</td>
+            <td><b>metadata</b> – Form of Dictionary</td>
             <td>Polje koje je hierarhijski poviš objekta I može sadržavati “child” polja</td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 </div>
+<br>
+<center>Tablica 17. pod metadata </center>
 <br>
 Primjer:<br><br>
 
@@ -353,9 +363,9 @@ Primjer:<br><br>
         </tr>
         <tr>
             <td>
-<code>metadata:</code><br>
-<code>&ensp;<b>name:</b> myapp-pod </code><br>
-<code>&ensp;<b>labels:</b></code><br>
+<code style="color: #2ecc71">metadata:</code><br>
+<code style="color: #2ecc71">&ensp;name: myapp-pod </code><br>
+<code style="color: #2ecc71">&ensp;labels:</code><br>
 <code style="color:red;">&emsp; app:myapp</code><br>
 <code style="color:red;" >&emsp; type: fron-end</code><br>
             </td>
@@ -417,6 +427,8 @@ Primjer:<br><br>
     <tbody></tbody>
 </table>
 </div>
+<br>
+<center>Tablica 18. pod metadata opis</center>
 
 <br><br>
 <div class="table5_component" role="region" tabindex="0">
@@ -455,14 +467,48 @@ spec:<br>
     <tbody></tbody>
 </table>
 <br>
+<center>Tablica 19. pod spec</center>
+<br>
 <br>
 
 conatiner je List/Array<br>
 "-" znači da je prvi u List/Array<br><br>
 Primjer: <br><br>
-<code>$ mkdir project</code><br>
-<code>$ cd project/</code><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$ mkdir project<br>
+$ cd project/
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br>
+
+
+
 Ako ne možemo isprve se sjetint syntax imamo naredbu koja nam kreira privremeni file, naredba koja provjerava sintax I ne čini nikakve radnje:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
 <code>
 $  kubectl run web --image=nginx --dry-run -o yaml<br><br>
 
@@ -483,16 +529,52 @@ spec:<br>
   restartPolicy: Always<br>
 status: {}<br>
 </code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
 <br><br>
 Na ovaj način vidimo kako bi nam izgledao naš .yaml file I ovaj output možemo usmjeriti u file s naredbom.<br><br>
-	<code>
-	$ kubectl run webapp --image=nginx --dry-run=client -o yaml > sample.yaml
-	</code>
-	<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$ kubectl run webapp --image=nginx --dry-run=client -o yaml > sample.yaml
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+	<br>
 	Mi možemo kreirati I ručno .yaml file na način:
 	<br><br>
-	<code>$ vim pod.yml</code>
-	<code>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$ vim pod.yml<br>
 apiVersion: v1<br>
 kind: Pod<br>
 metadata:<br>
@@ -506,37 +588,117 @@ spec:<br>
  &ensp; - name: nginx<br>
  &ensp;&ensp;&ensp;  image: nginx
 	
-	</code>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>	
+	
+	
+
+	
 	<br><br>
 	Ako želimo dodati jos jedan container<br><br>
 	
-	<code>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
  &ensp; containers:<br>
  &ensp; - name: nginx<br>
  &ensp;&ensp;&ensp;  image: nginx<br>
  &ensp; - name: busybox<br>
  &ensp;&ensp;&ensp;  image: busybox
 	
-	</code>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+	
+
 	<br><br>
 	Sad možemo kreirati POD<br><br>
-	
-	
-	<code>
+	<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
 	[ante@controlkube project]$ kubectl create -f pod.yml <br><br>
 	pod/nginx created<br>
-	</code>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+	
+
 	<br>
 	Može se koristiti I <b>apply</b> naredba<br><br>
-	<code>$ kubectl apply -f pod.yml</code>
+	
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$ kubectl apply -f pod.yml
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
 	<br><br>
 	Provjera detalja kreiranog POD <br><br>
-	<code>
-	$ kubectl describe pod nginx
-	</code>
+	<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$ kubectl describe pod nginx
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 	
-	
-	
+
 </body>
 <hr style="color:#ffb380">
 <center><p><a href="pod_uvod.html">Prethodna</a> | <a href="replica_controller.html">Sljedeća</a></center> 

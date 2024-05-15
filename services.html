@@ -1,5 +1,5 @@
 <!--
-   kubelet.html
+   services.html
    
    Copyright 2024 Ante Perić <ante@peric.no-ip.info>
    
@@ -32,23 +32,35 @@
 </head>
 
 <body>
-	
-													<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+<h2><center>CaksSonicDeveloper© - Linux</center></h2>
 	<hr style="color:#ffb380">
      <center>Kubernetes - Osobna Skripta</center>   
 	<br>	
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.6. Kubelet</P></b>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.11. Services </P></b>
+<br>
+Kubernetes Services omogućuju komunikaciju između različitih komponenti izvan aplikacije. Na primjer, naša aplikacija ima više podova koji pokreću više različitih sekcija.
+<br><br>
+Kao na primjer – imamo tri grupe.<br>
+Grupa za služenje front-end loads prema korisnicima, grupa koja služi za pokretanje back-end procesa, I treća grupa koja služi za spajanje na bazu podata.
+<br> U ovome primjeru imamo našu lokalnu  IP mrežu (192.168.0.1/24) I imamo POD mrežu (10.244.0.0 - Cluster Mreža). 
+<br> Ako imamo pod I u njumu je aplikcija kojoj možemo pristupiti preko Browsera sa adrese na primjer 10.224.0.2  a želimo pristupiti toj aplikaciji I preko naše prave mreže (192.xxx.xxx.xxx) trebamo nešto što je u sredini  da mapira te dvije podmreže.
+<br> U ovome slučaju Kubernetes Service dolazi kao riješenje.
+<br><br>
+Kubernetes Service je Kubernetes objekt kao  <br>
+I POD, ReplicaSet, Deployment I služi nam kao u ovome slučaju da “sluša” na nodu koji port poslužuje aplikaciju I <br>
+uspostavlja komunkaciju s portom na strani POD (aplikacije), ovo se zove Node – Pod Service.
+
+<br>
 <br>
 
-Nalazi se na strani radnih stanica I preko kubelet – a se vrši komunikacija s Control Node (Kube-apiserver).
-	
-	
+
+
+
 </body>
 <hr style="color:#ffb380">
-<center><p><a href="kube_sch.html">Prethodna</a> | <a href="kube_proxy.html">Sljedeća</a></center> 
+<center><p><a href="deployment.html">Prethodna</a> | <a href="service_tipovi.html">Sljedeća</a></center> 
 <hr style="color:#ffb380">
-
 </html>

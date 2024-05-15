@@ -39,10 +39,31 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">3.1 Instalacija Kubernetes software na Control Node</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>3.1 Instalacija Kubernetes software na Control Node</b></P>
 <br>
 Na radnoj stanici kreiramo repository. <br><br>
-<code>vim /etc/yum.repos.d/kubernetes.repo</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+vim /etc/yum.repos.d/kubernetes.repo
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br><br>
 
 
 <style>
@@ -89,24 +110,72 @@ Na radnoj stanici kreiramo repository. <br><br>
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
+
 <code>[kubernetes]<br>
 name=Kubernetes<br>
 baseurl=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/<br>
 enabled=1<br>
 gpgcheck=1<br>
 gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key<br>
-exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni</code></td>
+exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni </p></code></td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 <br>
-<br>
+
 Instaliramo:<br>
 <br>
-<code>yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes</code><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+
 <br>
-<code>systemctl enable --now kubelet.service</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+systemctl enable --now kubelet.service
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+<br>
 Sa ovom instalacijom dobili smo tools:<br><br>
 <ul>
   <li>kubelet</li>
@@ -115,12 +184,59 @@ Sa ovom instalacijom dobili smo tools:<br><br>
 </ul>  
 <br><br>
 Ostale naredbe:<br><br>
-<code>systemctl status kubelet.service</code><br><br>
-<code>systemctl restart kubelet.service</code><br><br>
-<code>systemctl stop kubelet.service</code><br><br>
+
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+systemctl status kubelet.service<br>
+systemctl restart kubelet.service<br>
+systemctl stop kubelet.service<br
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br>
 Dodajemo Bash Completation  <br><br>
-<code>source <(kubectl completion bash)</code><br><br>
-<code>kubectl completion bash > /etc/bash_completion.d/kubectl</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+source <(kubectl completion bash)<br><br>
+kubectl completion bash > /etc/bash_completion.d/kubectl<br><br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+
+
 
 
 

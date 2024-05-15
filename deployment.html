@@ -1,5 +1,5 @@
 <!--
-   scale_rs.html
+   deployment.html
    
    Copyright 2024 Ante Perić <ante@peric.no-ip.info>
    
@@ -32,7 +32,6 @@
 </head>
 
 <body>
-	
 <h2><center>CaksSonicDeveloper© - Linux</center></h2>
 	<hr style="color:#ffb380">
      <center>Kubernetes - Osobna Skripta</center>   
@@ -40,7 +39,7 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.9.2.1. Scale ReplicaSet</P></b>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.10. Deployment</P></b>
 <br>
 <style>
 .table1_component {
@@ -77,82 +76,10 @@
     padding: 5px;
 }
 </style>
-	
-	Zamislimo scenarij da nam je potreban veći broj POD jer se povećava broj korisnika. Za taj scenarij možemo Scale ReplicaSet. <br><br>
-
-Jedan od načina je da povećamo broj u replica setu za broj koliko nam je potrebno.  Uređujemo file<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-replicas: 3
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-
-<br>
-u<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-replicas: 6
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-<br>
-Ako želimo 6 POD – a. Zatim pokrećemo naredbu <br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl replace -f sample.yml
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-
-
+U slučaju da nam je potrebna nadogradnja aplikacije ili u slučaju da nam nadogradnja nije uspjela moramo napraviti “roll-back”, undo changes unutar containera I slično.<br>
+Za ovakav scenarij možemo koristiti “deployment”. Deployment je Kubernetes objekt koji je na većoj razini u Kubernetes arhitekturi. 
 <br><br>
-Drugin način je pokretanje naredbe:<br><br>
+Deployment se kreira na način vrlo slično kao ReplicaSet osim što u dijelu:<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -164,7 +91,7 @@ Drugin način je pokretanje naredbe:<br><br>
             <td>
 
 <code style="color: #2ecc71">
-kubectl scale --replicas=6 -f sample.yml
+kind: ReplicaSet
 </code>
 
             </td>
@@ -176,7 +103,7 @@ kubectl scale --replicas=6 -f sample.yml
 </div>
 
 <br>
-Treći način <br><br>
+Koristimo <br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -188,7 +115,7 @@ Treći način <br><br>
             <td>
 
 <code style="color: #2ecc71">
-kubectl scale --replicas=6 replicaset password-keeper-replicaset
+kind:Deployment
 </code>
 
             </td>
@@ -197,72 +124,8 @@ kubectl scale --replicas=6 replicaset password-keeper-replicaset
     <tbody></tbody>
 </table>
 
-</div>
-
-<br>
-<br>
-<style>
-.table1_component {
-    overflow: auto;
-    width: 100%;
-}
-
-.table1_component table {
-    border: 1px solid #dededf;
-    height: 100%;
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: left;
-}
-
-.table1_component caption {
-    caption-side: top;
-    text-align: left;
-}
-
-.table1_component th {
-    border: 1px solid #dededf;
-    background-color: #eceff1;
-    color: #000000;
-    padding: 5px;
-}
-
-.table1_component td {
-    border: 1px solid #dededf;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5px;
-}
-</style>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-    </thead>
-    <tbody>
-        <tr>
-            <td>replicaset</td>
-            <td>type</td>
-        </tr>
-        <tr>
-            <td>password-keeper-replicaset</td>
-            <td>Ime</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<br>
-<center>Tablica 22. Scale replicas obješnjenje</center>
-<br>
-<p  style="color: #fc1901" >NAPOMENA:</p> <br>
-
-Drugi I treći način neće napraviti update file – a.<br><br> 
-
-Četvrti način:<br><br>
-
-Koristimo edit naredbu:<br><br>
+</div><br>
+Kreira se na isti način:<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -274,7 +137,58 @@ Koristimo edit naredbu:<br><br>
             <td>
 
 <code style="color: #2ecc71">
-kubectl edit rs password-keeper-replicaset
+kubectl create -f sample.yaml 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div><br>
+Na ovaj način se I automatski kreira ReplicaSet kao I pod – I.<br><br>
+
+Naredba za ispis svih kreiranih objekata:
+<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl get all
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div><br>
+Dodatak. 
+<br><br>
+Kreiramo template ako imamo problema s memoriranjem yaml syntaxe:
+<br><br><b>POD</b>
+<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl run nginx --image=nginx --dry-run=client -o yaml
 </code>
 
             </td>
@@ -284,11 +198,32 @@ kubectl edit rs password-keeper-replicaset
 </table>
 
 </div>
+<br>
+<b>Deployment</b><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
 
-	<br><br>
-	Ova naredba otvara file gdje uređujemo
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl create deployment nginx  --image=nginx --dry-run=client -o yaml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+	
 </body>
 <hr style="color:#ffb380">
-<center><p><a href="rs.html">Prethodna</a> | <a href="deployment.html">Sljedeća</a></center> 
+<center><p><a href="scale_rs.html">Prethodna</a> | <a href="services.html">Sljedeća</a></center> 
 <hr style="color:#ffb380">
 </html>

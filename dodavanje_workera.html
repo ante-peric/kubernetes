@@ -39,18 +39,137 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">3.1.3. Dodavanje Workera u Cluster</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>3.1.3. Dodavanje Workera u Cluster</P></b>
 <br>
 Instaliramo na worker containderd runtime. <br><br>
-<code>dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+<br>
 Instaliramo:<br><br>
-<code>dnf install containerd.io -y</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+dnf install containerd.io -y
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br>
+
 Na svakoj radnoj stanici konfiguriramo containerd da koristi “systemdcgroup”.<br><br>
 Backup:<br><br>
-<code>mv /etc/containerd/config.toml /etc/containerd/config.toml.orginal</code><br><br>
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+mv /etc/containerd/config.toml /etc/containerd/config.toml.orginal
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br>
+
+
+
+
+
+
 Generiramo novi file:<br><br>
-<code>containerd config default > /etc/containerd/config.toml</code><br><br>
-<code>vim /etc/containerd/config.toml</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+containerd config default > /etc/containerd/config.toml
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+<br>
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+vim /etc/containerd/config.toml
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+<br><br>
 Postavljamo SystemdCgroup parametar <br><br>
 <style>
 .table_component {
@@ -97,7 +216,7 @@ Postavljamo SystemdCgroup parametar <br><br>
         </tr>
         <tr>
             <td>
-			<code>	[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]<br>
+		<p style="color: #2ecc71">	<code>	[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]<br>
 				BinaryName = ""<br>
             CriuImagePath = ""<br>
             CriuPath = ""<br>
@@ -108,7 +227,7 @@ Postavljamo SystemdCgroup parametar <br><br>
             NoPivotRoot = false<br>
             Root = ""<br>
             ShimCgroup = ""<br>
-            <b>SystemdCgroup = false</code></b><br>
+            <b>SystemdCgroup = false</code></p></b><br>
 				
 
             </td>
@@ -116,12 +235,88 @@ Postavljamo SystemdCgroup parametar <br><br>
     </thead>
     <tbody></tbody>
 </table><br><br>
-<code><b>SystemdCgroup = true</b></code><br><br>
-<code>systemctl restart containerd</code><br><br>
-<code>systemctl enable containerd</code><br><br>
-<code>systemctl status containerd</code><br><br>
+
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+<b>SystemdCgroup = true</b><br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br>
+
+
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+
+systemctl restart containerd<br>
+systemctl enable containerd<br>
+systemctl status containerd<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+<br>
 Na svakoj radnoj stanici kreiramo repository.<br><br>
-<code>vim /etc/yum.repos.d/kubernetes.repo</code><br><br>
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+vim /etc/yum.repos.d/kubernetes.repo
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+<br>
+
 
 <div class="table_component" role="region" tabindex="0">
 <table>
@@ -132,6 +327,7 @@ Na svakoj radnoj stanici kreiramo repository.<br><br>
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>
 [kubernetes]<br>
 name=Kubernetes<br>
@@ -140,15 +336,59 @@ enabled=1<br>
 gpgcheck=1<br>
 gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key<br>
 exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni<br>
-</code>
+</code></p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
-</table><br><br>
+</table><br>
 Instaliramo: <br><br>
-<code>yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes</code><br><br>
-<code>systemctl enable kubelet.service --now</code><br><br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+<br>
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+systemctl enable kubelet.service --now
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+<br>
 Udružujemo:<br><br>
 
 
@@ -162,10 +402,10 @@ Udružujemo:<br><br>
         </tr>
         <tr>
             <td>
-<code>
+<p  style="color: #2ecc71" ><code>
 kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \<br>
 	--discovery-token-ca-cert-hash sha256:356d70e8d25cfed9372e5a681243b46ddda92dcba878107f6e22346468c5bc39 
-</code>
+</code></p>
             </td>
         </tr>
     </thead>
@@ -184,7 +424,7 @@ Output:<br><br>
         </tr>
         <tr>
             <td>
-				<code>
+				<p  style="color: #2ecc71"><code>
 				 kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \
         --discovery-token-ca-cert-hash sha256:356d70e8d25cfed9372e5a681243b46ddda92dcba878107f6e22346468c5bc39 <br>
 [preflight] Running pre-flight checks<br>
@@ -201,7 +441,7 @@ This node has joined the cluster:<br>
 
 Run 'kubectl get nodes' on the control-plane to see this node join the cluster.<br>
         
-				</code>
+				</code></p>
 
             </td>
         </tr>
@@ -219,13 +459,13 @@ Provjera: <br><br>
         </tr>
         <tr>
             <td>
-<code>
+<p style="color: #2ecc71"><code>
 [ante@controlkube ~]$ kubectl get nodes<br>
 NAME                         STATUS     ROLES           AGE   VERSION<br>
 controlkube.caksonic.local   Ready      control-plane   16h   v1.28.9<br>
 worker1.caksonic.local       NotReady   <none>          43s   v1.28.9<br>
 worker2.caksonic.local       NotReady   <none>          40s   v1.28.9<br>
-</code>
+</code></p>
             </td>
         </tr>
     </thead>

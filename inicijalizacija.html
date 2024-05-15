@@ -39,7 +39,7 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">3.1.1. Inicijalizacija</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>3.1.1. Inicijalizacija</b></P>
 <br>
 <style>
 .table_component {
@@ -77,9 +77,31 @@
 }
 </style>
 
-
 Inicijaliziramo Kubernetes Cluster s Control Node sa naredbom: <br><br>
-<code>kubeadm init --control-plane-endpoint=controlkube</code><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+kubeadm init --control-plane-endpoint=controlkube
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br><br>
+
+
 Output: <br><br>
 <div class="table_component" role="region" tabindex="0">
 <table>
@@ -90,7 +112,7 @@ Output: <br><br>
         </tr>
         <tr>
             <td>
-				<code>[root@controlkube ~]# kubeadm init --control-plane-endpoint=controlkube<br>
+				<p style="color: #2ecc71"><code>[root@controlkube ~]# kubeadm init --control-plane-endpoint=controlkube<br>
 I0419 20:06:41.483007    6759 version.go:256] remote version is much newer: v1.30.0; falling back to: stable-1.28<br>
 [init] Using Kubernetes version: v1.28.9<br>
 [preflight] Running pre-flight checks<br>
@@ -172,7 +194,7 @@ Then you can join any number of worker nodes by running the following on each as
 
 kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \<br>
 	--discovery-token-ca-cert-hash sha256:356d70e8d25cfed9372e5a681243b46ddda92dcba878107f6e22346468c5bc39 <br>
-[root@controlkube ~]#</code><br>
+[root@controlkube ~]#</p></code><br>
 
             </td>
         </tr>
@@ -180,35 +202,112 @@ kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \<br>
     <tbody></tbody>
 </table><br><br>
 Postavljamo KUBECONFIG varijablu za korisnika koji će upravljati Kubernetes Clusterom.<br><br>
-<code># su - ante</code><br><br>
-<code>$ mkdir -p $HOME/.kube</code><br><br>
-<code>$  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</code><br><br>
-<code>sudo chown $(id -u):$(id -g) $HOME/.kube/config</code><br><br>
-<code>export KUBECONFIG=\$HOME/.kube/config</code><br><br>
-Ovo će raditi na trenutnoj sessiji a ako želimo da radi I poslje reboot uređujemo file kao root korisnik. <br><br>
-<code>$ vim /etc/bashrc</code><br><br>
-<code>export KUBECONFIG=\$HOME/.kube/config</code><br><br>
-Provjera Dostupnih Nodova: (možemo I restartirati servis)<br><br>
-<code>[ante@controlkube ~]$ sudo systemctl restart kubelet</code><br><br>
 <div class="table_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
-<code>kubectl get nodes<br>
-NAME                       STATUS     ROLES           AGE   VERSION<br>
-controlkube.caksonic.local NotReady   control-plane   17m   v1.28.2</code><br><br>
+<p style="color: #2ecc71">
+<code>
+# su - ante<br>
+$ mkdir -p $HOME/.kube<br>
+$  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config<br>
+sudo chown $(id -u):$(id -g) $HOME/.kube/config<br>
+export KUBECONFIG=\$HOME/.kube/config<br>
+</code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+</div>
 <br>
-Provjera Dostupnih Komponenti<br><br>
+
+
+
+Ovo će raditi na trenutnoj sessiji a ako želimo da radi I poslje reboot uređujemo file kao root korisnik. <br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$ vim /etc/bashrc<br>
+export KUBECONFIG=\$HOME/.kube/config<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+<br>
+Provjera Dostupnih Nodova: (možemo I restartirati servis)<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+sudo systemctl restart kubelet<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br>
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+kubectl get nodes<br>
+NAME                       STATUS     ROLES           AGE   VERSION<br>
+controlkube.caksonic.local NotReady   control-plane   17m   v1.28.2<br><br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br>
+
+
+Provjera dostupnih pod - a u namespace (U nastavku detaljnije o namespace)<br><br>
 
 <div class="table_component" role="region" tabindex="0">
 <table>
@@ -219,6 +318,7 @@ Provjera Dostupnih Komponenti<br><br>
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>kubectl get pods --all-namespaces<br>
 NAMESPACE     NAME                                                 READY   STATUS    RESTARTS   AGE<br>
 kube-system   coredns-5dd5756b68-7xnrm                             0/1     Pending   0          21m<br>
@@ -227,7 +327,7 @@ kube-system   etcd-controlkube.caksonic.local                      1/1     Runni
 kube-system   kube-apiserver-controlkube.caksonic.local            1/1     Running   0          21m<br>
 kube-system   kube-controller-manager-controlkube.caksonic.local   1/1     Running   0          21m<br>
 kube-system   kube-proxy-btm6f                                     1/1     Running   0          21m<br>
-kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Running   0          21m</code><br>
+kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Running   0          21m</code></p><br>
 
             </td>
         </tr>
@@ -304,7 +404,7 @@ kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Runni
     </thead>
     <tbody></tbody>
 </table><br>
-<center>Tablica 3</center><br><br>
+<center>Tablica 4. namespace kube-system coredns-5dd5756b68-7xnrm</center><br><br>
 </div>
 
 
@@ -342,7 +442,7 @@ kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Runni
     </thead>
     <tbody></tbody>
 </table><br>
-<center>Tablica 4</center><br><br>
+<center>Tablica 5. namespace kube-system coredns-5dd5756b68-jtb8g</center><br><br>
 </div>
 
 NAPOMENA: Ovdje je coredns (DNS otkrivanje) u PENDING stanju. Treba se instalirat Network Addon<br><br>
@@ -379,7 +479,7 @@ NAPOMENA: Ovdje je coredns (DNS otkrivanje) u PENDING stanju. Treba se instalira
     </thead>
     <tbody></tbody>
 </table><br>
-<center>Tablica 5</center><br><br>
+<center>Tablica 6. namespace kube-system etcd-controlkube.caksonic.local</center><br><br>
 </div>
 
 
@@ -415,7 +515,7 @@ NAPOMENA: Ovdje je coredns (DNS otkrivanje) u PENDING stanju. Treba se instalira
     </thead>
     <tbody></tbody>
 </table><br>
-<center>Tablica 6</center><br><br>
+<center>Tablica 7. namespace kube-system kube-apiserver-controlkube.caksonic.local</center><br><br>
 </div>
 
 
@@ -451,7 +551,7 @@ NAPOMENA: Ovdje je coredns (DNS otkrivanje) u PENDING stanju. Treba se instalira
     </thead>
     <tbody></tbody>
 </table><br>
-<center>Tablica 6</center><br><br>
+<center>Tablica 8. namespace kube-system kube-controller-manager-controlkube.caksonic.local</center><br><br>
 </div>
 
 
@@ -487,7 +587,7 @@ NAPOMENA: Ovdje je coredns (DNS otkrivanje) u PENDING stanju. Treba se instalira
     </thead>
     <tbody></tbody>
 </table><br>
-<center>Tablica 7</center><br><br>
+<center>Tablica 9. namespace kube-system kube-proxy-btm6f</center><br><br>
 </div>
 
 
@@ -524,7 +624,7 @@ NAPOMENA: Ovdje je coredns (DNS otkrivanje) u PENDING stanju. Treba se instalira
     </thead>
     <tbody></tbody>
 </table><br>
-<center>Tablica 8</center><br><br>
+<center>Tablica 10. namespace kube-system kube-scheduler-controlkube.caksonic.local</center><br><br>
 </div>
 
 

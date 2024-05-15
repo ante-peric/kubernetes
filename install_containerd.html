@@ -39,58 +39,246 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">3. Instalacija ContainerD Runtime na Control Node I Worker</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>3. Instalacija ContainerD Runtime na Control Node I Worker</b></P>
 <br>
 	
 	
 U ovome dijelu instalirat ćemo sve potrebne paketa koje ćemo koristiti u ovome tutorijalu.<br>
 Na svim radnim stanicama dodajemo repository: <br>
 <br>
-<code>dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</code><br>
-<br>
-<code>dnf install containerd.io -y</code><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo<br>
+dnf install containerd.io -y<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
 <br>
 Konfiguriramo containerd da koristi “systemdcgroup”.<br>
 <br>
 Backup: <br>
 <br>
-<code>mv /etc/containerd/config.toml /etc/containerd/config.toml.orginal</code><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+mv /etc/containerd/config.toml /etc/containerd/config.toml.orginal
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+
 <br>
 Generiramo novi file<br>
 <br>
-<code>containerd config default > /etc/containerd/config.toml</code><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+containerd config default > /etc/containerd/config.toml
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
 <br>
-<code>vim /etc/containerd/config.toml</code><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+vim /etc/containerd/config.toml
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
 <br>
 Postavljamo SystemdCgroup parametar <br>
 <br>
-<code>... Omitted Output ... </code><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+... Omitted Output ... <br>
 <br>
-<code>[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]</code><br>
-<code>BinaryName = ""</code><br>
-<code>CriuImagePath = ""</code><br>
-<code>CriuPath = ""</code><br>
-<code>CriuWorkPath = ""</code><br>
-<code>IoGid = 0</code><br>
-<code>IoUid = 0</code><br>
-<code>NoNewKeyring = false</code><br>
-<code>NoPivotRoot = false</code><br>
-<code>Root = ""</code><br>
-<code>ShimCgroup = ""</code><br>
-<code><b>SystemdCgroup = false</b></code><br>
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]<br>
+BinaryName = ""<br>
+CriuImagePath = ""<br>
+CriuPath = ""<br>
+CriuWorkPath = ""<br>
+IoGid = 0<br>
+IoUid = 0<br>
+NoNewKeyring = false<br>
+NoPivotRoot = false<br>
+Root = ""<br>
+ShimCgroup = ""<br>
+<b>SystemdCgroup = false</b><br>
 <br>
-<code>... Omitted Output ... </code><br>
+... Omitted Output ... <br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+
+
 <br>
 Postavljamo kao: <br>
 <br>
-<code><b>SystemdCgroup = true</b></code>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+<b>SystemdCgroup = true</b>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
 <br>
 <br>
 
-<code>systemctl start containerd.service</code><br>
-<code>systemctl restart containerd</code><br>
-<code>systemctl enable containerd</code><br>
-<code>systemctl status containerd</code><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+systemctl start containerd.service<br>
+systemctl restart containerd<br>
+systemctl enable containerd<br>
+systemctl status containerd<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
 <br>
 Command tool <b>ctr</b> je sad dostupan
 

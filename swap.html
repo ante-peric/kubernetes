@@ -39,25 +39,99 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">2.3. SWAP</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b> 2.3. SWAP</b></P>
 <br>
-Preporuka je imati SWAP isključen. 
+U ovom tutorialu nećemo koristiti DNS server, umjesto DNS servera koristiti ćemo “hosts” file za određivanje FQDN – a. 
+<br>
+Na svakoj radnoj stanici /etc/hosts file je uredjen na način:<br><br>
 
-Na svakoj radnoj stanici swap mora biti onemogućen.
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+
+        </tr>
+        <tr>
+            <td>
+            <p style="color: #2ecc71">
+            <code>
+            swapoff -a
+            
+            </code>
+           
+            </p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
 <br>
-<br>
-<code>swapoff -a</code>
-<br>
-<br>
-I komentirati u /etc/fstab
-<br>
-<br>
-<code> /dev/mapper/rl-swap     none    swap    defaults        0 0</code>
+I komentirati u /etc/fstab 
+<br><br>
+
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+
+        </tr>
+        <tr>
+            <td>
+            <p style="color: #2ecc71">
+            <code>
+            /dev/mapper/rl-swap     none    swap    defaults        0 0
+            </code>
+           
+            </p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
 
 	
 </body>
 <hr style="color:#ffb380">
 <center><p><a href="dns.html">Prethodna</a> | <a href="selinux.html">Sljedeća</a></center> 
 <hr style="color:#ffb380">
-
 </html>

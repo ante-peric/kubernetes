@@ -39,7 +39,7 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">2.6. Kernel Moduli</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>2.6. Kernel Moduli</P></b>
 <br>
 	
 Kreiramo I učitavamo nove kernel module:
@@ -57,29 +57,203 @@ Na svakoj radnoj stanici dodajemo kernel module:
 Kreiramo file:
 <br>
 <br>
-<code>vim /etc/modules-load.d/containerd.conf</code>
+
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+vim /etc/modules-load.d/containerd.conf
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+
+
 	<br>
 	<br>
-	Sa sadržajem <br>
-	<code>overlay</code><br>
-	<code>br_netfilter</code><br>
+	Sa sadržajem <br><br>
+	
+	<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+	overlay<br>
+	br_netfilter<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+	
+	
+	
+
 	<br>
 	Učitavamo novokreirane module <br>
 	<br>
-	<code>modprobe overlay</code><br>
-	<code>modprobe br_netfilter</code><br>
+	<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+	modprobe overlay<br>
+	modprobe br_netfilter<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+	
+
 	<br>
 	Dodajemo kernel parametre s kreiranjem file – a:<br>
 	<br>
-	<code># vim /etc/sysctl.d/k8s.conf</code><br>
+	<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+# vim /etc/sysctl.d/k8s.conf
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+	
+	
 	<br>
-	<code>net.bridge.bridge-nf-call-iptables  = 1</code><br>
-	<code>net.ipv4.ip_forward                 = 1</code><br>
-	<code>net.bridge.bridge-nf-call-ip6tables = 1</code><br>
+	<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+net.bridge.bridge-nf-call-iptables  = 1<br>
+net.ipv4.ip_forward = 1<br>
+net.bridge.bridge-nf-call-ip6tables = 1<br>
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+	
+	
+
 	<br>
 	Učitavanje novo – kreiranih parametara <br>
 	<br>
-	<code># sysctl --system</code><br>
+	
+	<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+# sysctl --system
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
 	<br>
 	
 	

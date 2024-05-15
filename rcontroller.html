@@ -39,10 +39,9 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">4.9.1. Replication Controller</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.9.1. Replication Controller</P></b>
 <br>
-Replication Controller također mora sadržavati 4 osnovne sekcije kao I POD.<br>
-
+Replication Controller također mora sadržavati 4 osnovne sekcije kao I POD.<br><br>
 <style>
 .table1_component {
     overflow: auto;
@@ -78,44 +77,83 @@ Replication Controller također mora sadržavati 4 osnovne sekcije kao I POD.<br
     padding: 5px;
 }
 </style>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
 
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
 
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
 
-<div class="table_component" role="region" tabindex="0">
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
-<code>apiVersion:<br>
+<p style="color: #2ecc71">
+<code>
+apiVersion:<br>
 kind:<br>
 metadata:<br>
 
-spec:<br></code>
+spec:<br>
+</code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 
+</div>
 
+
+
+<br>
 <b>apiVersion</b> je podržan kao “v1”.<br>
 <b>kind</b> je podržan kao Replication Controller<br><br>
-Kreiramo primjer:<br>
-
-
-<div class="table_component" role="region" tabindex="0">
+Kreiramo primjer:<br><br>
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>
 apiVersion: v1<br>
 kind: ReplicationController<br>
@@ -124,11 +162,20 @@ metadata:<br>
 &ensp; labels:<br>
 &emsp; &emsp;    app: tel-imenik-app<br>
 &emsp; &emsp;    type: jsp<br>
-            </code></td>
+</code>
+</p>
+            </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+</div>
+
+
+
+
+
 <br>
 Ovaj dio je sličan kao I kod PODS. Najkritičniji dio je spec:
 
@@ -208,21 +255,22 @@ spec:<br>
 </table>
 
 </div>
+<br>
+<center>Tablica 21. Primjer Postavljanja Pod – a u ReplicationControler </center>
 <br><br>
 Unutar POD dijela dodajemo kao što smo dodavali kod kreiranja POD. 
 
 Dodajemo cijeli dio <b>metadata</b> I <b>spec</b> kao child od <b>“template”</b><br><br>
-
-
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>
 metadata:<br>
 &ensp;  name: myapplication-rc<br>
@@ -236,23 +284,30 @@ spec: <br>
 &ensp; &ensp;    image: nginx<br>
 
 </code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
-</table><br>
+</table>
+
+</div>
+
+
+
+
+<br>
 Tako da dobijemo sljedeće unutar “template” kao “child”<br><br>
-
-
-<div class="table_component" role="region" tabindex="0">
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>
 spec:<br>
 &ensp;  template:<br>
@@ -266,28 +321,30 @@ spec:<br>
 &ensp; &ensp; &ensp;      containers:<br>
 &ensp; &ensp; &ensp;      - name: nginx-container<br>
 &ensp; &ensp; &ensp; &ensp;         image: nginx<br>
-
 </code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 
-<br>
-Sad imamo file kao ovaj:<br>
+</div>
 
-<div class="table_component" role="region" tabindex="0">
+
+<br>
+Sad imamo file kao ovaj:<br><br>
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>
-
 apiVersion: v1<br>
 kind: ReplicationController<br>
 metadata:<br>
@@ -310,23 +367,33 @@ spec:<br>
 &ensp; &ensp; &ensp;       - name: nginx-container<br>
 &ensp; &ensp; &ensp; &ensp;        image: nginx<br>
 </code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
-</table><br>
+</table>
+
+</div>
+
+
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+
+    <br>
 
 Za kreiranje Replication Controler dodajemo još jedno svojstvo “replicas”<br><br>
-
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>
 spec:<br>
 &ensp;  template<br>
@@ -335,23 +402,31 @@ spec:<br>
 &ensp;  |<br>
 &ensp;  replicas: 3<br>
 </code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+</div>
+
+
+
+
 <br><br>
 Broj tri znači da ćemo imati tri (identočna pod – a). Imamo finalni file.
 <br><br>
-<div class="table_component" role="region" tabindex="0">
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
+<p style="color: #2ecc71">
 <code>
 apiVersion: v1<br>
 kind: ReplicationController<br>
@@ -377,11 +452,16 @@ spec:<br>
 
 &ensp; &ensp;  replicas: 3<br>
 </code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+</div>
+
+
 <br><br>
 Kreiramo Replication Controller. (ovo je u fileu naziva:rc.yml)<br><br>
 <div class="table_component" role="region" tabindex="0">
@@ -393,9 +473,12 @@ Kreiramo Replication Controller. (ovo je u fileu naziva:rc.yml)<br><br>
         </tr>
         <tr>
             <td>
-<code>
+
+
+<code style="color: #2ecc71">
 kubectl create -f rs.yml
 </code>
+
             </td>
         </tr>
     </thead>
@@ -404,38 +487,45 @@ kubectl create -f rs.yml
 <br><br>
 
 	Provjera:<br><br>
-	<div class="table_component" role="region" tabindex="0">
+	
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
-<code>
+
+<code style="color: #2ecc71">
 $ kubectl get replicationcontrollers <br>
 NAME                                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; DESIRED   &ensp; &ensp; CURRENT   &ensp; &ensp; READY   &ensp; &ensp; AGE<br>
 telefonski-imenik-repliction-controller   &ensp; &ensp; &ensp; &ensp; 3         &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;3         &ensp; &ensp; &ensp; &ensp; &ensp; 3       &ensp; &ensp; 92s<br>
+
 </code>
+
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
-<br>
-	<br><br>
-	
-<div class="table_component" role="region" tabindex="0">
+
+</div>
+
+	<br>
+
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
             <td>
-<code>
+
+<code style="color: #2ecc71">
 [ante@controlkube ~]$ kubectl get pods<br>
 NAME                                            READY   STATUS    RESTARTS        AGE<br>
 peric                                           1/1     Running   3 (5h43m ago)   3d4h<br>
@@ -450,11 +540,17 @@ web                                             1/1     Running   6 (5h43m ago) 
 
 web1                                            1/1     Running   3 (5h43m ago)   3d1h<br>
 </code>
+
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+</div>
+
+
+
 <br><br>
 	
 	

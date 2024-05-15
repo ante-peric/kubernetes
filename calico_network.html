@@ -39,10 +39,33 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">3.1.2. Instalacija Calico Network Addon</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>3.1.2. Instalacija Calico Network Addon</b></P>
 <br>
-<code>$  kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/calico.yaml</code><br><br>
-	Provjera<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$  kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/calico.yaml
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+
+
+	Provjera
 	<style>
 .table_component {
     overflow: auto;
@@ -78,16 +101,17 @@
     padding: 5px;
 }
 </style>
-
-<div class="table_component" role="region" tabindex="0">
+<div class="table1_component" role="region" tabindex="0">
 <table>
 
     <thead>
         <tr>
-     
+   
         </tr>
         <tr>
-            <td><code>
+            <td>
+<p style="color: #2ecc71">
+<code>
 [ante@controlkube ~]$ kubectl get pods --all-namespaces<br>
 NAMESPACE     NAME                                                 READY   STATUS    RESTARTS   AGE<br>
 kube-system   calico-kube-controllers-7ddc4f45bc-hhqsj             1/1     Running   0          117m<br>
@@ -99,14 +123,20 @@ kube-system   kube-apiserver-controlkube.caksonic.local            1/1     Runni
 kube-system   kube-controller-manager-controlkube.caksonic.local   1/1     Running   0          157m<br>
 kube-system   kube-proxy-btm6f                                     1/1     Running   0          157m<br>
 kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Running   0          157m</code><br><br>
-
+</code>
+</p>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 
-	
+</div>
+
+
+
+
+
 	
 </body>
 <hr style="color:#ffb380">

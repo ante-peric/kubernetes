@@ -39,7 +39,7 @@
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%">4.8. POD - Uvod</P>
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.8. POD - Uvod</P></b>
 <br>
 
 <style>
@@ -99,9 +99,9 @@
         </tr>
         <tr>
             <td>
-<code>kubectl get nodes<br>
+<p style="color: #2ecc71"><code>kubectl get nodes<br>
 NAME                         STATUS   ROLES           AGE    VERSION<br>
-<b>controlkube.caksonic.local</b>   Ready    control-plane   2d3h   v1.28.2</code><br>
+<b>controlkube.caksonic.local</b>   Ready    control-plane   2d3h   v1.28.2</code></p><br>
 
             </td>
         </tr>
@@ -109,8 +109,27 @@ NAME                         STATUS   ROLES           AGE    VERSION<br>
     <tbody></tbody>
 </table>
 <br><br>
-Vrlo dobra naredba koju treba koristit: <br>
-<code>$ kubectl get pod -o wide</code>
+Vrlo dobra naredba koju treba koristit: <br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+$ kubectl get pod -o wide
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
 <br><br>
 
 
@@ -127,28 +146,113 @@ Provjeravamo Taints:<br><br>
         <tr>
             <td>
 
-<code>$ kubectl describe node controlkube.caksonic.local | grep Taints<br>
-Taints:           <b>  node-role.kubernetes.io/control-plane:NoSchedule</code></b>
+<p style="color: #2ecc71"><code>$ kubectl describe node controlkube.caksonic.local | grep Taints<br>
+Taints:           <b>  node-role.kubernetes.io/control-plane:NoSchedule</code></p></b>
             </td>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+
+
 <br><br>
 Postavljamo Taints:: <br><br>
-<code>$ kubectl taint nodes controlkube.caksonic.local node-role.kubernetes.io/control-plane-</code>
-<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+kubectl taint nodes controlkube.caksonic.local node-role.kubernetes.io/control-plane-
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+
+<br>
 Output:
 <br><br>
-<code>node/controlkube.caksonic.local untainted</code><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+node/controlkube.caksonic.local untainted
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+<br>
 Za vratiti na početno stanje: <br><br>
-<code>kubectl taint nodes controlkube.caksonic.local node-role.kubernetes.io/control-plane:NoSchedule</code><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+kubectl taint nodes controlkube.caksonic.local node-role.kubernetes.io/control-plane:NoSchedule
+</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<br>
 
 Kreiramo jednostavan POD naziva “web”.<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
 <code>
 $ kubectl run web --image nginx<br>
 pod/web created
 </code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
 <br><br>
 
 <style>
@@ -223,9 +327,9 @@ Provjera:<br><br>
         </tr>
         <tr>
             <td>
-<code>$ kubectl get pods<br>
+<p style="color: #2ecc71"><code>$ kubectl get pods<br>
 NAME    READY   STATUS    RESTARTS   AGE<br>
-web     1/1     Running   0          11m</code><br>
+web     1/1     Running   0          11m</code></p>
             </td>
         </tr>
     </thead>
