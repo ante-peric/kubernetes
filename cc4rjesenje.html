@@ -1,5 +1,5 @@
 <!--
-   namespace.html
+   cc4rjesenje.html
    
    Copyright 2024 Ante Perić <ante@peric.no-ip.info>
    
@@ -32,134 +32,55 @@
 </head>
 
 <body>
-	<title>CSD</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="generator" content="Geany 1.38" />
-</head>
-
-<body>
-<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	
+			<h2><center>CaksSonicDeveloper© - Linux</center></h2>
 	<hr style="color:#ffb380">
      <center>Kubernetes - Osobna Skripta</center>   
 	<br>	
-	<hr style="color:#ffb380">
+	<hr style="color:#ffb380"><style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+
+
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.12. Namesapces </P></b>
 <br>
-U dosadšnjem dijelu kreirali smo različite objekte ako što su, pod, ReplicationControler, ReplicaSet, Deployment, Services. Svi ovi objekti su kreirani u jednom Namespace. <br><br>
-
-Kubernetes starta s 4 inicijalna namespace’s:<br><br>
-<style>
-.table1_component {
-    overflow: auto;
-    width: 100%;
-}
-
-.table1_component table {
-    border: 1px solid #dededf;
-    height: 100%;
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: left;
-}
-
-.table1_component caption {
-    caption-side: top;
-    text-align: left;
-}
-
-.table1_component th {
-    border: 1px solid #dededf;
-    background-color: #eceff1;
-    color: #000000;
-    padding: 5px;
-}
-
-.table1_component td {
-    border: 1px solid #dededf;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5px;
-}
-</style>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-
-        </tr>
-        <tr>
-            <td><b>Namespace</b></td>
-            <td><b>Opis</b></td>
-        </tr>
-        <tr>
-            <td>default</td>
-            <td>
-            Kubernetes uključuje ovaj namespace tako da se može odmah koristiti kreirani Cluster bez da se kreira novi namespace
-            </td>
-        </tr>
-        <tr>
-            <td>kube-node-lease</td>
-            <td>Ovaj namespace drži “Lease” objekte vezane za svaki node.</td>
-        </tr>
-        <tr>
-            <td>kube-public</td>
-            <td>Ovaj namespace je rezerviran za Cluster korištenje u slučaju da se neki od resursa moraju postaviti kao vidljivi</td>
-        </tr>
-        <tr>
-            <td>kube-system</td>
-            <td>Namespace za objekte kreirane od strane Kubernetes sistema.</td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-</div>
-<br>
-<center>Tablica 26. Lista Defaultnih Namespace</center>
-<br>
-Ispis svih namespace<br>
-<br>
-<style>
-.table1_component {
-    overflow: auto;
-    width: 100%;
-}
-
-.table1_component table {
-    border: 1px solid #dededf;
-    height: 100%;
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: left;
-}
-
-.table1_component caption {
-    caption-side: top;
-    text-align: left;
-}
-
-.table1_component th {
-    border: 1px solid #dededf;
-    background-color: #eceff1;
-    color: #000000;
-    padding: 5px;
-}
-
-.table1_component td {
-    border: 1px solid #dededf;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5px;
-}
-</style>
-
-<div class="table1_component" role="region" tabindex="0">
+Riješenje zadatka 4 Core Concept:<br><br>
+4. Zadatak<br><br>
 <table>
 
     <thead>
@@ -169,8 +90,8 @@ Ispis svih namespace<br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubectl get namespace
+<code style="color: black">
+$ vim replica_set.yml
 </code>
 
             </td>
@@ -178,10 +99,7 @@ kubectl get namespace
     </thead>
     <tbody></tbody>
 </table>
-
-</div>
-<br>
-Kreiramo novi namespace imena “dev”: <br><br>
+</div><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -192,114 +110,33 @@ Kreiramo novi namespace imena “dev”: <br><br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-vim namespace-dev.yml
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-<br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-apiVersion: v1<br>
-kind: Namespace<br>
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: ReplicaSet<br>
 metadata:<br>
-  name: dev<br>
-</code>
+&ensp; name: replica-set-aplikacija<br>
+&ensp; labels:<br>
+&ensp; &ensp; type: jsp<br>
+&ensp; &ensp; author: Ante-Peric<br><br>
 
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl create -f namespace-dev.yml
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-<br>
-Drugu način je preko command line:<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl create namespace prod
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-<br>
-Dodavanje pod – a u određeni namespace <br><br>
-
-Imao već gotov file <br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-apiVersion: v1<br>
-kind: Pod<br>
-metadata:<br>
-&ensp;  name: nginx<br>
-&ensp;  labels:<br>
-&ensp; &ensp;    app: nginx<br>
-&ensp; &ensp;    tier: frontend<br><br>
-  
 spec:<br>
-&ensp;  containers:<br>
-&ensp;  - name: nginx<br>
-&ensp; &ensp;    image: nginx<br>
+&ensp; template:<br>
+&ensp; &ensp; metadata:<br>
+&ensp; &ensp; &ensp; name: telefonski-imenik<br>
+&ensp; &ensp; &ensp; &ensp; labels:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; author: Ante-Peric<br><br>
+
+
+&ensp; &ensp; spec:<br>
+&ensp; &ensp; &ensp; containers:<br>
+&ensp; &ensp; &ensp; &ensp; - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp; &ensp;image: nginx<br><br>
+
+&ensp; replicas: 3<br>
+&ensp; selector:<br>
+&ensp; &ensp; matchLabels:<br>
+&ensp; &ensp; &ensp; type: jsp<br>
 </code>
 
             </td>
@@ -307,191 +144,6 @@ spec:<br>
     </thead>
     <tbody></tbody>
 </table>
-
-</div>
-<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl create -f sample.yaml --namespace=dev
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-apiVersion: v1<br>
-kind: Pod<br>
-metadata:<br>
-&ensp;  name: nginx<br>
-&ensp;  <code style="color: red">namespace: dev</code><br>
-&ensp;  labels:<br>
-&ensp; &ensp;    app: nginx<br>
-&ensp; &ensp;    tier: frontend<br><br>
-  
-spec:<br>
-&ensp;  containers:<br>
-&ensp; &ensp;  - name: nginx<br>
-&ensp; &ensp; &ensp;  image: nginx<br>
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br><br>
-Uz kreiranje namespace kreira se I DNS automatski. Pod ima dns record kao:<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-
-        </tr>
-        <tr>
-            <td>ime_pod.namespace.service.cluster.local</td>
-        
-        </tr>
-
-    </thead>
-    <tbody></tbody>
-</table>
-</div>
-<br>
-<center>Tablica 27. Syntax DNS namespace</center><br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-
-        </tr>
-        <tr>
-            <td>nginx.dev.svc.cluster.local</td>
-        
-        </tr>
-
-    </thead>
-    <tbody></tbody>
-</table>
-</div><br>
-<center>Tablica 28. Primjer DNS namespace</center>
-<br>
-Naredba <br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl get pods
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br><br>
-Ako želimo ispisati podove u određenom namespace: <br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl get pods --namespace=dev
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div>
-
-<br><br>
-
-Uvijek ispisuje informacije iz default namespace. Ako želimo postaviti da nam ispisuje iz nekog drugog namespace po postavci.<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl config set-context $(kubectl config current-context) --namespace=dev
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br><br>
-Ispis svih podova u svim namespace<br><br>
-
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl get pods --all-namespaces
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
 </div><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
@@ -503,8 +155,8 @@ kubectl get pods --all-namespaces
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubectl get pods -A
+<code style="color: black">
+$ kubectl create -f replication_contorller.yml
 </code>
 
             </td>
@@ -512,11 +164,244 @@ kubectl get pods -A
     </thead>
     <tbody></tbody>
 </table>
-
 </div><br>
+4.1. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl get replicaset
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+4.2. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl get replicaset -o wide<br>
+$ kubectl get replicaset replica-set-aplikacija -o wide
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+4.3. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl describe replicaset replica-set-aplikacija
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+4.4. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ vim replica_set.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+replicas: 4
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl replace -f replica_set.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+4.5. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl edit replicaset replica-set-aplikacija
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+replicas: 5
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+4.6. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl scale --replicas=6 -f replica_set.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+4.7. Zadatak <br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl scale --replicas=7 replicaset replica-set-aplikacija
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+4.8. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl delete replicasets replica-set-aplikacija 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+
 
 </body>
 <hr style="color:#ffb380">
-<center><p><a href="service_clusterip.html">Prethodna</a> | <a href="dodatak.html">Sljedeća</a></center> 
+<center><p><a href="zadaci.html">Zadaci</a> | <a href="rijesenja.html">Riješenja</a></center> 
 <hr style="color:#ffb380">
 </html>

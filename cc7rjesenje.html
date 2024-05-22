@@ -1,5 +1,5 @@
 <!--
-   dodatak.html
+   cc7rjesenje.html
    
    Copyright 2024 Ante Perić <ante@peric.no-ip.info>
    
@@ -32,7 +32,17 @@
 </head>
 
 <body>
-	<style>
+			<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<br>
+Riješenje zadatka 7 Core Concept:<br><br>
+7. Zadatak<br><br>
+<style>
 .table1_component {
     overflow: auto;
     width: 100%;
@@ -67,25 +77,6 @@
     padding: 5px;
 }
 </style>
-
-<h2><center>CaksSonicDeveloper© - Linux</center></h2>
-	<hr style="color:#ffb380">
-     <center>Kubernetes - Osobna Skripta</center>   
-	<br>	
-	<hr style="color:#ffb380">
-<center><p><a href="index.html">Početna</a></center> 
-<hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.13. Dodatak </P></b>
-<br>
-
-Imperative – korak o korak instrukcije<br><br>
-
-Declerative – samo specificiranje  finalnog cilja<br><br>
-
-Imperative Naredbe:<br><br>
-<b>POD</b><br><br>
-
-POD Kreiranje:<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -96,8 +87,8 @@ POD Kreiranje:<br><br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubectl run nginx --image=nginx
+<code style="color: black">
+$ vim replica_set_1.yml
 </code>
 
             </td>
@@ -105,55 +96,7 @@ kubectl run nginx --image=nginx
     </thead>
     <tbody></tbody>
 </table>
-
 </div><br>
-POD Mainfest YAML <br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl run nginx --image=nginx --dry-run=client -o yaml
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br>
-<b>Deployment</b><br><br>
-
-Deployment Kreiranje:<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl create deployment --image=nginx nginx
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br>
-Deployment Mainfest YAML:<br><br>
 
 <div class="table1_component" role="region" tabindex="0">
 <table>
@@ -165,8 +108,31 @@ Deployment Mainfest YAML:<br><br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: ReplicaSet<br>
+metadata:<br>
+&ensp; name: replica-set-aplikacija<br><br>
+
+
+spec:<br>
+&ensp; template:<br>
+&ensp; &ensp; metadata:<br>
+&ensp; &ensp; &ensp; name: telefonski-imenik<br>
+&ensp; &ensp; &ensp; labels:<br>
+&ensp; &ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; &ensp; author: Ante-Peric<br><br>
+
+&ensp; &ensp; spec:<br>
+&ensp; &ensp; &ensp; containers:<br>
+&ensp; &ensp; &ensp; &ensp; - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; image: nginx<br><br>
+
+&ensp; &ensp; replicas: 3<br>
+&ensp; &ensp; selector:<br>
+&ensp; &ensp; &ensp; matchLabels:<br>
+&ensp; &ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; &ensp; author: Ante-Peric<br>
 </code>
 
             </td>
@@ -174,9 +140,7 @@ kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
     </thead>
     <tbody></tbody>
 </table>
-
 </div><br>
-Deployment Mainfest YAML s replicas:<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -187,8 +151,8 @@ Deployment Mainfest YAML s replicas:<br><br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubectl create deployment --image=nginx nginx --dry-run=client -o yaml replicas=4
+<code style="color: black">
+kubectl create -f replica_set_1.yml
 </code>
 
             </td>
@@ -196,10 +160,8 @@ kubectl create deployment --image=nginx nginx --dry-run=client -o yaml replicas=
     </thead>
     <tbody></tbody>
 </table>
-
 </div><br>
-
-Deployment scale: <br><br>
+7.1. Zadatak<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -210,8 +172,8 @@ Deployment scale: <br><br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubect scale deployment nginx --replicas=4
+<code style="color: black">
+$ vim 1_service_pod.yml
 </code>
 
             </td>
@@ -219,57 +181,8 @@ kubect scale deployment nginx --replicas=4
     </thead>
     <tbody></tbody>
 </table>
-
 </div><br>
 
-<b>Services</b><br><br>
-
-ClusterIP<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br>
-ili<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-   
-        </tr>
-        <tr>
-            <td>
-
-<code style="color: #2ecc71">
-kubectl create service clusterip  redis --tcp=6379:6379  --dry-run=client -o yaml
-</code>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
-</div><br>
-
-<b>NodePort</b><br><br>
 
 <div class="table1_component" role="region" tabindex="0">
 <table>
@@ -281,8 +194,23 @@ kubectl create service clusterip  redis --tcp=6379:6379  --dry-run=client -o yam
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubectl expose pod nginx --type=NodePort --port=80 --name nginx-service --dry-run=client -o ymal
+<code style="color: black">
+apiVersion: v1<br>
+kind: Service<br>
+metadata:<br>
+&ensp; name: ante-aplikacija-service<br><br>
+
+spec:<br>
+&ensp; type: NodePort<br>
+&ensp; ports:<br>
+&ensp; &ensp; - targetPort: 80<br>
+&ensp; &ensp; &ensp; port: 80<br>
+&ensp; &ensp; &ensp; nodePort: 30008<br><br>
+  
+&ensp; selector:<br>
+&ensp; &ensp; type: jsp<br>
+&ensp; &ensp; author: Ante-Peric<br>
+
 </code>
 
             </td>
@@ -290,11 +218,8 @@ kubectl expose pod nginx --type=NodePort --port=80 --name nginx-service --dry-ru
     </thead>
     <tbody></tbody>
 </table>
-
 </div><br>
-
-ili <br><br>
-
+7.2. Zadatak<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -305,8 +230,11 @@ ili <br><br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-kubectl create service nodeport nginx --tcp=80:80  --node-port=30008 --dry-run=client -o ymal
+<code style="color: black">
+$ kubectl get services<br>
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE<br>
+ante-aplikacija-service   NodePort    10.106.70.198   <none>        80:30008/TCP   44m<br>
+
 </code>
 
             </td>
@@ -314,12 +242,52 @@ kubectl create service nodeport nginx --tcp=80:80  --node-port=30008 --dry-run=c
     </thead>
     <tbody></tbody>
 </table>
-
 </div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ curl http://10.106.70.198
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ curl http://192.168.122.120:30008 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+
 
 
 </body>
 <hr style="color:#ffb380">
-<center><p><a href="namespace.html">Prethodna</a> | <a href="zadaci.html">Sljedeća</a></center> 
+<center><p><a href="zadaci.html">Zadaci</a> | <a href="rijesenja.html">Riješenja</a></center> 
 <hr style="color:#ffb380">
 </html>

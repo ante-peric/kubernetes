@@ -26,13 +26,146 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>untitled</title>
+	<title>CSD</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 1.38" />
 </head>
 
 <body>
-	
-</body>
+	<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
 
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.11.2 Service ClusterIP </P></b>
+<br>
+Zamislimo primjer gdje imamo pod – e, koje sadrže front-end, back-end I redis (key-value store) pod. <br><br>
+
+Front-end podovi moraju komunicirati s back-end podovima a back-end podovi s redis podovima. <br><br>
+Koji je ispravan način za uspostavu komunikacije između ovih pod – a ? Svi podovi imaju dodjeljene IP Addresses ali ove adrese nisu statične.<br>
+ Za uspješno spajanje, usmjeravanje, komuniciranje, itd, koristimo Service – Service ClusterIP.<br><br>
+ Kreiramo na način:<br><br>
+ <div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+vim cip.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+<br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+apiVersion: v1<br>
+kind: Service<br>
+metadata:<br>
+&ensp;  name: back-end<br><br>
+
+spec:<br>
+&ensp;  type: ClusterIP<br>
+&ensp;  ports:<br>
+&ensp;    - targetPort: 80<br>
+&ensp; &ensp;      port: 80<br><br>
+     
+&ensp;  selector:<br>
+&ensp; &ensp;    <code style="color: red">app: myapp</code><br>
+&ensp; &ensp;    <code style="color: red">type: fron-end</code><br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+<br>
+Zatim kreiramo Service ClusterIP
+<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl create -f cip.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div>
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="service_tipovi.html">Prethodna</a> | <a href="service_loadbalancer.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
 </html>

@@ -1,0 +1,88 @@
+<!--
+   cc9.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+					<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<br>
+Zadatak 9:<br><br>
+Kreiraj sa imperative naredbom pod s sljedećim svojstvima:<br>
+name: redis<br>
+image: redis:alpine<br>
+labels: tier:db<br><br>
+9.1. Zadatak<br><br>
+Kreiraj sa imperative naredbom clusterip service imena
+name=redis-service da se omogući aplikacija redis (iz primjera 9) na portu 6379<br><br>
+9.2. Zadatak<br><br>
+Kreiraj deployment sa sljedećim svojstvima:<br>
+name: webapp<br>
+image: kodekloud/webapp-color<br>
+replicas=3 <br><br>
+9.3. Zadatak<br><br>
+Kreiraj novi pod sa sljedećim svojstvima:<br>
+name: custom-nginx<br>
+image:nginx<br>
+container port: 8080<br><br>
+9.4. Zadatak<br><br>
+S imperative naredbom kreiraj namespace imena: dev-ns<br><br>
+9.5. Zadatak<br><br>
+Kreiraj deployment sa sljedećim svojstvima:<br>
+name: redis-deploy<br>
+unutar namestace dev-ns<br>
+image:redis<br>
+replicas: 2<br><br>
+9.6. Zadatak<br><br>
+Kreiraj pod sa sljedećim svojstvima:<br>
+name: httpd <br>
+image: httpd:alpine<br>
+namespace: default<br>
+Kreiraj service tipa ClusterIP imena httpd<br>
+port=80<br><br>
+
+
+
+
+
+
+
+<p><a href="cc9rjesenje.html"> Riješenje</a></p>
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="zadaci.html"> Zadaci</a> | <a href="rijesenja.html">Riješenja</a></center> 
+<hr style="color:#ffb380">
+</html>

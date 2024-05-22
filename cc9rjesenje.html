@@ -1,5 +1,5 @@
 <!--
-   service_loadbalancer.html
+   cc9rjesenje.html
    
    Copyright 2024 Ante Perić <ante@peric.no-ip.info>
    
@@ -32,101 +32,16 @@
 </head>
 
 <body>
-<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+			<h2><center>CaksSonicDeveloper© - Linux</center></h2>
 	<hr style="color:#ffb380">
      <center>Kubernetes - Osobna Skripta</center>   
 	<br>	
 	<hr style="color:#ffb380">
 <center><p><a href="index.html">Početna</a></center> 
 <hr style="color:#ffb380">
-<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.11.3 Service LoadBalancer </P></b>
 <br>
-Ukratko: <br><br>
-
-Ako imamo nekoliko nodova u Clusteru I svaki node je domaćin jedne aplikacije (voting app, na primjer) I taj svaki node ima svoju IP Addresses. <br><br>
-Krajnji korisnik može pristupiti aplikaciju na način da upotrijebit neke od IP Addresses koje su dodjeljene nodovima. Na primjer:
-<br><br>
-<style>
-.table1_component {
-    overflow: auto;
-    width: 100%;
-}
-
-.table1_component table {
-    border: 1px solid #dededf;
-    height: 100%;
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: left;
-}
-
-.table1_component caption {
-    caption-side: top;
-    text-align: left;
-}
-
-.table1_component th {
-    border: 1px solid #dededf;
-    background-color: #eceff1;
-    color: #000000;
-    padding: 5px;
-}
-
-.table1_component td {
-    border: 1px solid #dededf;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5px;
-}
-</style>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>http://192.168.0.10</td>
-        </tr>
-        <tr>
-            <td>http://192.168.0.11</td>
-        </tr>
-        <tr>
-            <td>http://192.168.0.12</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<br>
-<center>Tablica 24. Primjer IP Adresa Nodova</center>
-<br><br>
-Ali krajnji korisnik ne želi koristiti te URL već želi jedinstveni URL kao na primjer:
-<br><br>
-<div class="table1_component" role="region" tabindex="0">
-<table>
-
-    <thead>
-        <tr>
-
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>http://example-vote.com</td>
-        </tr>
-
-    </tbody>
-</table>
-</div>
-<br>
-<center>Tablica 25. Primjer URL - example-vote.com</center><br><br>
-Tada jedan od načina da riješimo ovaj problem je da kreiramo novu Virtual Machine za LoadBalancer svrhu. <br>
-Kreiranje LoadBalancer: <br><br>
+Riješenje zadatka 9 Core Concept:<br><br>
+9. Zadatak<br><br>
 <style>
 .table1_component {
     overflow: auto;
@@ -173,21 +88,8 @@ Kreiranje LoadBalancer: <br><br>
         <tr>
             <td>
 
-<code style="color: #2ecc71">
-apiVersion: v1<br>
-kind: Service<br>
-metadata:<br>
-&ensp;  name: my-app<br><br>
-
-spec:<br>
-&ensp;  type: LoadBalancer<br>
-&ensp;  ports:<br>
-&ensp;   - targetPort: 80<br>
-&ensp; &ensp;     port: 80<br>
-&ensp; &ensp;     nodePort: 30008<br>
-&ensp;  selector:<br>
-&ensp; &ensp;    <code style="color: red">app: myapp</code><br>
-&ensp; &ensp;    <code style="color: red">type: fron-end</code><br>
+<code style="color: black">
+$ kubectl run redis --image=redis:alpine --labels="tier=db"
 </code>
 
             </td>
@@ -195,11 +97,156 @@ spec:<br>
     </thead>
     <tbody></tbody>
 </table>
+</div><br>
+9.1. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
 
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl expose pod redis --port=6379 --name=redis-service
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+9.2. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+9.3. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl run custom-nginx --image=nginx --port=8080
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+9.4. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl create namespace dev-ns
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+9.5. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl create deployment redis-deploy --image=redis --replicas=2 --namespace=dev-ns
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl run httpd --image=httpd:alpine --namespace=default
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+$ kubectl expose pod httpd  --name=httpd --port=80
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 </div>
+
 
 </body>
 <hr style="color:#ffb380">
-<center><p><a href="service_clusterip.html">Prethodna</a> | <a href="namespace.html">Sljedeća</a></center> 
+<center><p><a href="zadaci.html">Zadaci</a> | <a href="rijesenja.html">Riješenja</a></center> 
 <hr style="color:#ffb380">
 </html>
