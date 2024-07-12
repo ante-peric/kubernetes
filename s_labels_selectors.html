@@ -1,0 +1,249 @@
+<!--
+   s_labels_selectors.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>3. Labels And Selectors </P></b>
+<br> 
+Labels I Selectors su standardne metode za grupiranje u svrhu filtriranja kod različitih kriterija. <br>
+Labels kao što ime kaže služe za postavljanje oznaka (labels) a pomoću selector filtriramo.
+ <br><br>
+ Primjer Labels u pod.yml <br><br>
+ <style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+...<br><br>
+
+labels:<br>
+&ensp; app: App1<br>
+&ensp; function: Front-End<br>
+&ensp; ...<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Može dodavati koliko poželimo labela.<br><br>
+
+Ako želimo izlistati sve podove koji imaju label na primjer:<br><br> 
+
+app=App1 (mora postojati selector).<br><br>
+Primjer 1.<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl get pods --selector app=App1
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+Primjer 2. <br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl get pods --selector type=jsp
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl get pods --selector env=prod,bu=finance,tier=frontend
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br><br>
+
+
+
+Ovdje ne trebamo mješati Labels koji se koriste u markiranju na primjer ReplicaSet ili Deployment.<br><br>
+ Ovdje govorimo o Labels koji markiraju <b>pod</b>.
+ Ako želimo filtrirati pravi I željeni pod možemo koristiti kombinaciju labela na pod – u I na ReplicaSet – na primjer.<br><br>
+  <ul>
+  <li>Pod</li>
+  <li>ReplicaSet</li>
+  <li>Deployment</li>
+  <li>Service</li>
+</ul> <br>
+Naredba za ispis svih objekata koji su vezani za neki label npr:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl get all --selector env=prod
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+<br><br>
+
+<b>Annotations</b><br><br>
+Dok se Selectors I Labels koriste za grupiranje I filtriranje objekata u Kubernetesu,  annotations se koriste za bilježenje drugih informacija kao što su na primjer:
+  <ul>
+  <li>verzija aplikacije</li>
+  <li>build verzija</li>
+  <li>contact details - telefonski broj/email</li>
+  <li>itd</li>
+</ul><br><br>
+Postavlja se unutar metadata  ReplicaSet/Deployment<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+metadata:<br>
+&ensp; annotations:<br>
+&ensp; &ensp; contact:peric.pericante@gmail.com<br>
+&ensp; &ensp; buildversion:1.0<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+ 
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="s_rucno_upravljanje.html">Prethodna</a> | <a href="taints_tolerations.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

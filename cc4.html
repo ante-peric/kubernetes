@@ -45,19 +45,19 @@ Kreiraj ReplicaSet  pomoću file – a (replica_set.yml) sa svojstvima:<br><br>
 <b>ReplicaSet</b><br>
 ime: replica-set-aplikacija<br>
 labels:<br> 
-&ensp; type: jsp<br>
+&ensp; type: html-aplikacija<br>
 &ensp; author: Ante-Peric<br><br>
 <b>pod</b><br>
 ime: telefonski-imenik<br>
 labels:<br>
-&ensp; type: jsp<br>
+&ensp; type: html<br>
 &ensp; author: Ante-Peric<br><br>
 <b>containers</b><br>
 name: nginx-container<br>
 image: nginx<br><br>
 Broj podaova 3<br><br>
 <b>selector</b><br>
-type: jsp<br><br>
+svi labeli<br><br>
 4.1. Zadatak<br>
 Izlistaj sve ReplicationSet<br><br>
 4.2. Zadatak<br>

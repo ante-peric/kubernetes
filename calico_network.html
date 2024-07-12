@@ -52,7 +52,7 @@
             <td>
 <p style="color: #2ecc71">
 <code>
-$  kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/calico.yaml
+$ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 </code>
 </p>
             </td>
@@ -114,15 +114,16 @@ $  kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26
 <code>
 [ante@controlkube ~]$ kubectl get pods --all-namespaces<br>
 NAMESPACE     NAME                                                 READY   STATUS    RESTARTS   AGE<br>
-kube-system   calico-kube-controllers-7ddc4f45bc-hhqsj             1/1     Running   0          117m<br>
-kube-system   calico-node-ln9wt                                    1/1     Running   0          117m<br>
-kube-system   coredns-5dd5756b68-7xnrm                             1/1     Running   0          157m<br>
-kube-system   coredns-5dd5756b68-jtb8g                             1/1     Running   0          157m<br>
-kube-system   etcd-controlkube.caksonic.local                      1/1     Running   0          157m<br>
-kube-system   kube-apiserver-controlkube.caksonic.local            1/1     Running   0          157m<br>
-kube-system   kube-controller-manager-controlkube.caksonic.local   1/1     Running   0          157m<br>
-kube-system   kube-proxy-btm6f                                     1/1     Running   0          157m<br>
-kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Running   0          157m</code><br><br>
+kube-system   calico-kube-controllers-5b9b456c66-v25js             1/1     Running   0          5m44s<br>
+kube-system   calico-node-lzwxq                                    1/1     Running   0          5m44s<br>
+kube-system   coredns-7db6d8ff4d-5sttj                             1/1     Running   0          17m<br>
+kube-system   coredns-7db6d8ff4d-ftz5w                             1/1     Running   0          17m<br>
+kube-system   etcd-controlkube.caksonic.local                      1/1     Running   0          17m<br>
+kube-system   kube-apiserver-controlkube.caksonic.local            1/1     Running   0          17m<br>
+kube-system   kube-controller-manager-controlkube.caksonic.local   1/1     Running   0          17m<br>
+kube-system   kube-proxy-62mxm                                     1/1     Running   0          17m<br>
+kube-system   kube-scheduler-controlkube.caksonic.local            1/1     Running   0          17m<br>
+</code><br><br>
 </code>
 </p>
             </td>

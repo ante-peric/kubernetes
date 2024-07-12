@@ -1,0 +1,176 @@
+<!--
+   node_affinity.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>6. Node Affinity</P></b>
+<br>
+Glavna zadaća Node Affinity je osiguravanje da određeni podovi su postavljenji na određeni node.<br><br>
+Primjer:<br><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+ApiVersion: v1<br>
+kind:<br>
+metadata:<br>
+name: myapp-pod<br>
+spec:<br>
+&ensp; containers:<br>
+&ensp; &ensp; - name: data-processor<br>
+&ensp; &ensp; &ensp; image: data-processor<br><br>
+
+&ensp; affinity:<br>
+&ensp; &ensp; nodeAffinity:<br>
+&ensp; &ensp; &ensp; requiredDuringSchedulingIgnoredDuringExecution:<br>
+&ensp; &ensp; &ensp; &ensp; nodeSelectorTerms:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; - matchExpressions:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; - key: size<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; operator: In<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; values:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; - Large<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+Imamo dva tipa Node Affinity<br><br>
+
+<b>requiredDuringSchedulingIgnoredDuringExecution: </b> Scheduler ne može postaviti Pod sve dok se ne podudaraju pravila<br><br>
+
+<b>preferredDuringSchedulingIgnoredDuringExecution: </b> Scheduler pokušava pronaći node koji posjeduje postavljena pravila.<br><br>
+Ako želimo postaviti pod na još jedan node koji im value na primjer Medium. Dodajemo :<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+ values:<br>
+                - Large<br>
+                - Medium
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Znači da će scheduler postaviti pod na jedan od dva uvjeta koji postoje na node. <br><br>
+Kod Node Affinity možemo koristiti I operator NotIn koji znači da se ne stavlja pod koji je označen kao na primjer “Small”<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+operator: NotIn<br>
+values:<br>
+- Small<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="node_selector.html">Prethodna</a> | <a href="resource_req_limits.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

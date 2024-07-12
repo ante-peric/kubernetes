@@ -1,0 +1,407 @@
+<!--
+   s6rjesenje.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+
+			<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<br>
+Zadatak 6. <br><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl label nodes worker2.caksonic.local color=blue
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+6.1. Zadatak <br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+vim blue.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: Deployment<br>
+metadata:<br>
+&ensp; labels:<br>
+&ensp; &ensp; app: blue<br>
+&ensp; name: blue<br>
+spec:<br>
+&ensp; replicas: 3<br>
+&ensp; selector:<br>
+&ensp; &ensp; matchLabels:<br>
+&ensp; &ensp; &ensp; app: blue<br><br>
+  
+&ensp; template:<br>
+&ensp; &ensp; metadata:<br>
+&ensp; &ensp; &ensp; labels:<br>
+&ensp; &ensp; &ensp; &ensp; app: blue<br>
+&ensp; &ensp; spec:<br>
+&ensp; &ensp; &ensp; containers:<br>
+&ensp; &ensp; &ensp; &ensp; - image: nginx<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; name: nginx<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl create -f blue.yml 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+6.2. Zadatak <br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+vim blue.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: Deployment<br>
+metadata:<br>
+&ensp; labels:<br>
+&ensp; &ensp; app: blue<br>
+&ensp; name: blue<br>
+spec:<br>
+&ensp; replicas: 3<br>
+&ensp; selector:<br>
+&ensp; &ensp; matchLabels:<br>
+&ensp; &ensp; &ensp; app: blue<br><br>
+  
+&ensp; template:<br>
+&ensp; &ensp; metadata:<br>
+&ensp; &ensp; &ensp; labels:<br>
+&ensp; &ensp; &ensp; &ensp; app: blue<br>
+&ensp; &ensp; spec:<br>
+&ensp; &ensp; &ensp; affinity:<br>
+&ensp; &ensp; &ensp; &ensp; nodeAffinity:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; requiredDuringSchedulingIgnoredDuringExecution:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; nodeSelectorTerms:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; - matchExpressions:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; - key: color<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; operator: In<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; values:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; - blue<br>
+&ensp; &ensp; &ensp; containers:<br>
+&ensp; &ensp; &ensp; &ensp; - image: nginx<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; name: nginx<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl replace --force -f blue.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+6.3. Zadatak<br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl describe  nodes controlkube.caksonic.local | grep -i Taints
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl taint node controlkube.caksonic.local node-role.kubernetes.io/control-plane:NoSchedule-
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl describe nodes controlkube.caksonic.local | grep -i node-role.kubernetes.io/*
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+vim red.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: Deployment<br>
+metadata:<br>
+&ensp; labels:<br>
+&ensp; &ensp; app: red<br>
+&ensp; name: red<br>
+spec:<br>
+&ensp; replicas: 2<br>
+&ensp; selector:<br>
+&ensp; &ensp; matchLabels:<br>
+&ensp; &ensp; &ensp; app: red<br>
+&ensp; template:<br>
+&ensp; &ensp; metadata:<br>
+&ensp; &ensp; &ensp; labels:<br>
+&ensp; &ensp; &ensp; &ensp; app: red<br>
+&ensp; &ensp; spec:<br>
+&ensp; &ensp; &ensp; affinity:<br>
+&ensp; &ensp; &ensp; &ensp; nodeAffinity:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; requiredDuringSchedulingIgnoredDuringExecution:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; nodeSelectorTerms:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; - matchExpressions:<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; - key: node-role.kubernetes.io/control-plane<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; operator: Exists<br>
+&ensp; &ensp; &ensp; containers:<br>
+&ensp; &ensp; &ensp; &ensp; - image: nginx<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; name: nginx<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="s_zadaci.html">Zadaci</a> | <a href="s_rijesenja.html">Riješenja</a></center> 
+<hr style="color:#ffb380">
+</html>

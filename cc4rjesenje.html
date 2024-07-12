@@ -116,7 +116,7 @@ kind: ReplicaSet<br>
 metadata:<br>
 &ensp; name: replica-set-aplikacija<br>
 &ensp; labels:<br>
-&ensp; &ensp; type: jsp<br>
+&ensp; &ensp; type: html-aplikacija<br>
 &ensp; &ensp; author: Ante-Peric<br><br>
 
 spec:<br>
@@ -124,7 +124,7 @@ spec:<br>
 &ensp; &ensp; metadata:<br>
 &ensp; &ensp; &ensp; name: telefonski-imenik<br>
 &ensp; &ensp; &ensp; &ensp; labels:<br>
-&ensp; &ensp; &ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; type: html<br>
 &ensp; &ensp; &ensp; &ensp; &ensp; author: Ante-Peric<br><br>
 
 
@@ -136,7 +136,8 @@ spec:<br>
 &ensp; replicas: 3<br>
 &ensp; selector:<br>
 &ensp; &ensp; matchLabels:<br>
-&ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; type: html<br>
+&ensp; &ensp; &ensp; author: Ante-Peric<br>
 </code>
 
             </td>
@@ -332,7 +333,10 @@ replicas: 5
     </thead>
     <tbody></tbody>
 </table>
-</div><br>
+</div>
+<p style="color: red"> Napomena: edit ne uređuje replica_set.yml file (vrijedi samo za  deklarativne naredbe, tj. kad se ručno kreira file mainfest.yml)</p>
+
+
 4.6. Zadatak<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
@@ -353,7 +357,9 @@ $ kubectl scale --replicas=6 -f replica_set.yml
     </thead>
     <tbody></tbody>
 </table>
-</div><br>
+</div>
+<p style="color: red"> Napomena: scale ne uređuje replica_set.yml file (vrijedi samo za  deklarativne naredbe, tj. kad se ručno kreira file mainfest.yml)</p>
+
 4.7. Zadatak <br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
@@ -374,7 +380,10 @@ $ kubectl scale --replicas=7 replicaset replica-set-aplikacija
     </thead>
     <tbody></tbody>
 </table>
-</div><br>
+</div>
+<p style="color: red"> Napomena: scale ne uređuje replica_set.yml file (vrijedi samo za  deklarativne naredbe, tj. kad se ručno kreira file - mainfest.yml)</p>
+
+
 4.8. Zadatak<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>

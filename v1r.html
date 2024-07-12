@@ -1,0 +1,408 @@
+<!--
+   v1r.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+
+			<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+
+<br>
+1. Zadatak<br><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+mkdir /mnt/data-volume 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+1.2. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+vim pod1.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: v1<br>
+kind: Pod<br>
+metadata:<br>
+&emsp; name: random-pod<br>
+spec:<br>
+&emsp; containers:<br>
+&emsp; &emsp; - name: almalinux<br>
+&emsp; &emsp; &emsp; image: almalinux<br>
+&emsp; &emsp; &emsp; command: ["/bin/bash", "-c"]<br>
+&emsp;  &emsp;  &emsp; args:<br>
+&emsp; &emsp; &emsp; &emsp; - |<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; echo "Hello Ante"<br><br>
+
+
+&emsp; &emsp; &emsp; volumeMounts:<br>
+&emsp; &emsp; &emsp; &emsp; - mountPath: /opt<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; name: data-volume<br><br>
+
+&emsp; volumes:<br>
+&emsp; &emsp; - name: data-volume<br>
+&emsp; &emsp; &emsp; hostPath:<br>
+&emsp; &emsp; &emsp; &emsp; path: /mnt/data-volume<br>
+&emsp; &emsp; &emsp; &emsp; type: Directory<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl create -f pod1.yml 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br><br>
+1.2. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+mkdir /mnt/data-volume1
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+vim pod2.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+<br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: v1<br>
+kind: Pod<br>
+metadata:<br>
+&emsp; name: random-pod2<br>
+spec:<br>
+&emsp; containers:<br>
+&emsp; &emsp; - name: almalinux-container<br>
+&emsp; &emsp; &emsp; image: almalinux<br>
+&emsp; &emsp; &emsp; command: ["/bin/bash", "-c"]<br>
+&emsp; &emsp; &emsp; args:<br>
+&emsp; &emsp; &emsp; &emsp; - |<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; echo "Hello Ante" >> /mnt/ante.txt<br><br>
+
+&emsp; &emsp; &emsp; volumeMounts:<br>
+&emsp; &emsp; &emsp; &emsp; - mountPath: /mnt/<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; name: data-volume1<br><br>
+
+&emsp; volumes:<br>
+&emsp; &emsp; - name: data-volume1<br>
+&emsp; &emsp; &emsp; hostPath:<br>
+&emsp; &emsp; &emsp; &emsp; path: /mnt/data-volume1<br>
+&emsp; &emsp; &emsp; &emsp; type: Directory<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl create -f pod2.yml 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+1.3. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+mkdir /mnt/data-volume3
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+vim dep3.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: Deployment<br>
+metadata:<br>
+&emsp; name: random-deployment<br>
+spec:<br>
+&emsp; template:<br>
+&emsp; &emsp; metadata:<br>
+&emsp; &emsp; &emsp; labels:<br>
+&emsp; &emsp; &emsp; &emsp; type: jsp<br><br>
+
+&emsp; &emsp; spec:<br>
+&emsp; &emsp; &emsp; containers:<br>
+&emsp; &emsp; &emsp; &emsp; - name: nginx-container<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; image: nginx<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; command: ["/bin/bash", "-c"]<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; args:<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; - |<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; echo "Hello Ante" > /mnt/ante.txt<br><br>
+&emsp; &emsp; &emsp; &emsp; &emsp; volumeMounts:<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; - name: data-volume3<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; mountPath: /mnt<br><br>
+              
+&emsp; &emsp; &emsp; volumes:<br>
+&emsp; &emsp; &emsp; &emsp; - name: data-volume3<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; hostPath:<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; path: /mnt/data-volume3<br>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; type: Directory<br><br>   
+
+&emsp; replicas: 3<br>
+&emsp; selector:<br>
+&emsp; &emsp; matchLabels:<br>
+&emsp; &emsp; &emsp;  type: jsp<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl create -f  dep3.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="v_zadaci.html">Zadaci</a> | <a href="v_rijesenja.html">Riješenja</a></center> 
+<hr style="color:#ffb380">
+</html>

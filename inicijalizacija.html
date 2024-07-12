@@ -77,7 +77,9 @@
 }
 </style>
 
-Inicijaliziramo Kubernetes Cluster s Control Node sa naredbom: <br><br>
+Inicijaliziramo Kubernetes Cluster s Control Node sa naredbom:<br><br>
+
+(jednostavna inicijalizacija)<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -89,7 +91,7 @@ Inicijaliziramo Kubernetes Cluster s Control Node sa naredbom: <br><br>
             <td>
 <p style="color: #2ecc71">
 <code>
-kubeadm init --control-plane-endpoint=controlkube
+kubeadm init
 </code>
 </p>
             </td>
@@ -100,6 +102,90 @@ kubeadm init --control-plane-endpoint=controlkube
 
 </div>
 <br><br>
+ili inicijalizacija s  malo više opcija:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+<p style="color: #2ecc71">
+<code>
+kubeadm init   --apiserver-advertise-address=192.168.122.120 --pod-network-cidr=192.168.0.0/16</code>
+</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+</div><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>kubeadm init</td>
+            <td>kubeadm init naredba</td>
+        </tr>
+        <tr>
+            <td>--apiserver-advertise-address 192.168.122.120</td>
+            <td>API Server advertise adresa za control plane node.</td>
+        </tr>
+        <tr>
+            <td>--service-cidr 192.168.2.0/24</td>
+            <td>Service-cidr:service mreža</td>
+        </tr>
+        <tr>
+            <td>--pod-network-cidr 172.17.0.0/16</td>
+            <td>Pod-network: pod mreža</td>
+        </tr>
+    </tbody>
+</table>
+</div><br>
 
 
 Output: <br><br>
@@ -112,19 +198,22 @@ Output: <br><br>
         </tr>
         <tr>
             <td>
-				<p style="color: #2ecc71"><code>[root@controlkube ~]# kubeadm init --control-plane-endpoint=controlkube<br>
-I0419 20:06:41.483007    6759 version.go:256] remote version is much newer: v1.30.0; falling back to: stable-1.28<br>
-[init] Using Kubernetes version: v1.28.9<br>
+<p style="color: #2ecc71"><code>
+[root@controlkube ~]# kubeadm init \<br>
+> --apiserver-advertise-address 192.168.122.120 \<br>
+> --service-cidr 192.168.2.0/24 \<br>
+> --pod-network-cidr 172.17.0.0/16<br>
+[init] Using Kubernetes version: v1.30.1<br>
 [preflight] Running pre-flight checks<br>
 	[WARNING Firewalld]: firewalld is active, please ensure ports [6443 10250] are open or your cluster may not function correctly<br>
 [preflight] Pulling images required for setting up a Kubernetes cluster<br>
 [preflight] This might take a minute or two, depending on the speed of your internet connection<br>
 [preflight] You can also perform this action in beforehand using 'kubeadm config images pull'<br>
-W0419 20:07:26.348607    6759 checks.go:835] detected that the sandbox image "registry.k8s.io/pause:3.6" of the container runtime is inconsistent with that used by kubeadm. It is recommended that using "registry.k8s.io/pause:3.9" as the CRI sandbox image.<br>
+W0524 15:43:39.559181    2180 checks.go:844] detected that the sandbox image "registry.k8s.io/pause:3.6" of the container runtime is inconsistent with that used by kubeadm.It is recommended to use "registry.k8s.io/pause:3.9" as the CRI sandbox image.<br>
 [certs] Using certificateDir folder "/etc/kubernetes/pki"<br>
 [certs] Generating "ca" certificate and key<br>
 [certs] Generating "apiserver" certificate and key<br>
-[certs] apiserver serving cert is signed for DNS names [controlkube controlkube.caksonic.local kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 192.168.122.120]<br>
+[certs] apiserver serving cert is signed for DNS names [controlkube.caksonic.local kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [192.168.2.1 192.168.122.120]<br>
 [certs] Generating "apiserver-kubelet-client" certificate and key<br>
 [certs] Generating "front-proxy-ca" certificate and key<br>
 [certs] Generating "front-proxy-client" certificate and key<br>
@@ -138,6 +227,7 @@ W0419 20:07:26.348607    6759 checks.go:835] detected that the sandbox image "re
 [certs] Generating "sa" key and public key<br>
 [kubeconfig] Using kubeconfig folder "/etc/kubernetes"<br>
 [kubeconfig] Writing "admin.conf" kubeconfig file<br>
+[kubeconfig] Writing "super-admin.conf" kubeconfig file<br>
 [kubeconfig] Writing "kubelet.conf" kubeconfig file<br>
 [kubeconfig] Writing "controller-manager.conf" kubeconfig file<br>
 [kubeconfig] Writing "scheduler.conf" kubeconfig file<br>
@@ -149,14 +239,17 @@ W0419 20:07:26.348607    6759 checks.go:835] detected that the sandbox image "re
 [kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"<br>
 [kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"<br>
 [kubelet-start] Starting the kubelet<br>
-[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s<br>
-[apiclient] All control plane components are healthy after 15.006922 seconds<br>
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests"<br>
+[kubelet-check] Waiting for a healthy kubelet. This can take up to 4m0s<br>
+[kubelet-check] The kubelet is healthy after 1.003076062s<br>
+[api-check] Waiting for a healthy API server. This can take up to 4m0s<br>
+[api-check] The API server is healthy after 9.006932109s<br>
 [upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace<br>
 [kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster<br>
 [upload-certs] Skipping phase. Please see --upload-certs<br>
 [mark-control-plane] Marking the node controlkube.caksonic.local as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]<br>
 [mark-control-plane] Marking the node controlkube.caksonic.local as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]<br>
-[bootstrap-token] Using token: 27sp8s.fifnnuvs555r04c8<br>
+[bootstrap-token] Using token: 3rwvc2.4h1c6ehq4z2rsvxi<br>
 [bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles<br>
 [bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes<br>
 [bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials<br>
@@ -165,7 +258,7 @@ W0419 20:07:26.348607    6759 checks.go:835] detected that the sandbox image "re
 [bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace<br>
 [kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key<br>
 [addons] Applied essential addon: CoreDNS<br>
-[addons] Applied essential addon: kube-proxy<br>
+[addons] Applied essential addon: kube-proxy<br><br>
 
 Your Kubernetes control-plane has initialized successfully!<br><br>
 
@@ -183,18 +276,12 @@ You should now deploy a pod network to the cluster.<br>
 Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:<br>
   https://kubernetes.io/docs/concepts/cluster-administration/addons/<br><br>
 
-You can now join any number of control-plane nodes by copying certificate authorities<br>
-and service account keys on each node and then running the following as root:<br><br>
-
-  kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \<br>
-	--discovery-token-ca-cert-hash sha256:356d70e8d25cfed9372e5a681243b46ddda92dcba878107f6e22346468c5bc39 \<br>
-	--control-plane <br><br>
-
 Then you can join any number of worker nodes by running the following on each as root:<br><br>
 
-kubeadm join controlkube:6443 --token 27sp8s.fifnnuvs555r04c8 \<br>
-	--discovery-token-ca-cert-hash sha256:356d70e8d25cfed9372e5a681243b46ddda92dcba878107f6e22346468c5bc39 <br>
-[root@controlkube ~]#</p></code><br>
+kubeadm join 192.168.122.120:6443 --token 3rwvc2.4h1c6ehq4z2rsvxi \<br>
+	--discovery-token-ca-cert-hash sha256:f64297f7f4b99208feaa72dcfccdf7a84b1729659f7ae3525b3d717e96dfa8cc<br> 
+
+</p></code><br>
 
             </td>
         </tr>
@@ -217,7 +304,7 @@ Postavljamo KUBECONFIG varijablu za korisnika koji će upravljati Kubernetes Clu
 $ mkdir -p $HOME/.kube<br>
 $  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config<br>
 sudo chown $(id -u):$(id -g) $HOME/.kube/config<br>
-export KUBECONFIG=\$HOME/.kube/config<br>
+export KUBECONFIG=$HOME/.kube/config<br>
 </code>
 </p>
             </td>
@@ -244,7 +331,7 @@ Ovo će raditi na trenutnoj sessiji a ako želimo da radi I poslje reboot uređu
 <p style="color: #2ecc71">
 <code>
 $ vim /etc/bashrc<br>
-export KUBECONFIG=\$HOME/.kube/config<br>
+export KUBECONFIG=$HOME/.kube/config<br>
 </code>
 </p>
             </td>
@@ -255,7 +342,9 @@ export KUBECONFIG=\$HOME/.kube/config<br>
 
 </div>
 
-<br>
+<br><br>
+
+
 Provjera Dostupnih Nodova: (možemo I restartirati servis)<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>

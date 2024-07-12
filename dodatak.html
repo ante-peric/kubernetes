@@ -77,10 +77,145 @@
 <hr style="color:#ffb380">
 <P STYLE="margin-bottom: 0in; line-height: 100%"><b>4.13. Dodatak </P></b>
 <br>
+<b>replace, edit, scale.</b><br><br>
+<b>replace schema:</b><br><br>
+<b>1.</b><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
 
-Imperative – korak o korak instrukcije<br><br>
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
 
-Declerative – samo specificiranje  finalnog cilja<br><br>
+<code style="color: #2ecc71">
+vim mainfest.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl replace -f mainfest.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+<b>edit schema:</b><br><br>
+<b>1.</b><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl edit -f mainfest.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<b>2.</b><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl edit replicasets.apps replicaset-1
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<b>scale schema: </b><br><br>
+<b>1.</b><br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl scale --replicas=6 -f mainfest.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+<b>2.</b><br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl scale replicasets.apps replicaset-1 --replicas=7
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+
+<b>Imperative</b> – korak po korak instrukcije - mainfest.yml file<br><br>
+
+<b>Declerative</b> – samo specificiranje  finalnog cilja -run, expose, scale, delete, ...<br><br>
 
 Imperative Naredbe:<br><br>
 <b>POD</b><br><br>

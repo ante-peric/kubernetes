@@ -196,7 +196,7 @@ spec:<br>
 &ensp; ports:<br>
 &ensp; &ensp; - targetPort: 80<br>
 &ensp; &ensp; &ensp; port: 80<br>
-&ensp; &ensp; &ensp; nodePort: 30009<br><br>
+&ensp; &ensp; &ensp; nodePort: 30010<br><br>
 
 &ensp; selector:<br>
 &ensp; &ensp; app: ante-aplikacija<br>
@@ -232,6 +232,7 @@ $ kubectl create -f ante_service_pod.yml
 </table>
 </div><br>
 6.2. Zadatak<br><br>
+Provjeravamo na kojem workeru je aplikacija pokrenuta:<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -243,9 +244,11 @@ $ kubectl create -f ante_service_pod.yml
             <td>
 
 <code style="color: black">
-$ kubectl get services<br>
-NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE<br>
-ante-aplikacija-service   NodePort    10.109.253.233   <none>        80:30009/TCP   13m
+kubectl get pods ante -o wide<br>
+NAME   &ensp;  &ensp; READY   &ensp;  &ensp; STATUS    &ensp;  &ensp; RESTARTS   &ensp;  &ensp; AGE   &ensp;  &ensp; IP   &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;&ensp;  NODE  &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;&ensp; &ensp;&ensp;   NOMINATED  NODE   &ensp; &ensp; &ensp; &ensp;  READINESS GATES<br>
+ante   &ensp; &ensp; 1/1     &ensp; &ensp; &ensp; Running   &ensp; &ensp; &ensp; 0          &ensp; &ensp; &ensp; &ensp; 69m   &ensp; &ensp; 172.17.172.143   worker1.caksonic.local   none           &ensp; &ensp; &ensp; &ensp; &ensp;&ensp; &ensp; &ensp; &ensp; none<br>
+<br>
+
 
 </code>
 
@@ -255,6 +258,7 @@ ante-aplikacija-service   NodePort    10.109.253.233   <none>        80:30009/TC
     <tbody></tbody>
 </table>
 </div><br>
+Vidimo da je aplikacija pokrenuta na worker1.caksonic.local. Sa Terminala worker1 pokrećemo naredbu:<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -266,7 +270,7 @@ ante-aplikacija-service   NodePort    10.109.253.233   <none>        80:30009/TC
             <td>
 
 <code style="color: black">
-$ curl http://10.109.253.233
+curl http://172.17.172.143
 </code>
 
             </td>
@@ -275,6 +279,7 @@ $ curl http://10.109.253.233
     <tbody></tbody>
 </table>
 </div><br>
+Provjeravamo NodePort (Cluster Adresu)<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -286,7 +291,72 @@ $ curl http://10.109.253.233
             <td>
 
 <code style="color: black">
-$ curl http://192.168.122.120:30009
+ kubectl get service<br>
+NAME                      &ensp; &ensp; &ensp; &ensp; &ensp;&ensp; &ensp; &ensp;&ensp; &ensp;&ensp;    &ensp; &ensp; TYPE        &ensp; &ensp; CLUSTER-IP      &ensp; &ensp; &ensp; &ensp; EXTERNAL-IP   &ensp; &ensp; &ensp; &ensp;  PORT(S)        &ensp; &ensp; &ensp; &ensp;  AGE<br>
+ante-aplikacija-service   &ensp; &ensp; NodePort    192.168.2.205   &ensp; &ensp; &ensp;  none        &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;  80:30010/TCP   &ensp; &ensp; &ensp; 90m
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Pokrećemo naredbu također sa worker1 radne stanice:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+curl http://192.168.2.205
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Za opći pristup - Znamo da je aplikacija na worker1.caksonic.local sa adresom: 192.168.122.121 i  sa bilo kojeg računala možemo pokrenut naredbu:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+curl http://192.168.122.121:30010
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+ili preko Web Browsera:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+http://192.168.122.121:30010/
 </code>
 
             </td>
@@ -295,9 +365,6 @@ $ curl http://192.168.122.120:30009
     <tbody></tbody>
 </table>
 </div>
-
-
-
 </body>
 <hr style="color:#ffb380">
 <center><p><a href="zadaci.html">Zadaci</a> | <a href="rijesenja.html">Riješenja</a></center> 

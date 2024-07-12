@@ -47,17 +47,19 @@ labels:<br>
 &ensp; app = ante-aplikcija<br> 
 &ensp; tier=front-end<br>
 &ensp; autor: Ante-Peric<br>
+name: nginx-contaoner<br>
 image: nginx<br><br>
 6.1. Zadatak<br><br>
 Kreiraj Service NodePort file - a ante_service_pod.yml sa sljedećim svojstvima:<br><br>
 name: ante-aplikacija-service<br><br>
 pod Port - targetPort: 80<br>
 service Port – port: 80<br>
-node Port – nodePort – nodePort: 30009<br><br>
+node Port – nodePort – nodePort: 30010<br><br>
 Mapiraj sa selectorom ovaj service sa pod imena “ante” sa svim labelima koje smo kreirali.<br><br>
 6.2. Provjeri sa curl naredbom unutar host - a: <br>
 adresa service<br>
 adresa hosta<br> 
+globalna <br>
 
 <p><a href="cc6rjesenje.html"> Riješenje</a> </p>
 </body>

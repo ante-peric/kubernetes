@@ -1,0 +1,339 @@
+<!--
+   resource_req_limits.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>7. Resource Requirement and Limits</P></b>
+<br>
+U ovome dijelu bavit ćemo se resoursima pod – a. Zamislimo da imamo Cluster sa tri radne stanice:<br><br>
+
+    • control-plane<br>
+    • worker1<br>
+    • worker2 <br><br>
+    
+    Svaka radna stanica ima dodjeljene resourse kao što su CPU I radna memorija.<br><br>
+    
+Svaki pod zahtjeva resource za uspješno obavljanje zadataka. Kao što unamo kube-scheduler odlučuje koji pod ide gdje. <br>
+Scheduler uzima u obzir I koliko resursa pod će trebat I na osnovu tih podataka usmjerava pod. <br><br>
+ 
+Ako ni jedan node ne ispunjava uvjete (svi resursi su zauzeti) tada Scheduler stopira dodjeljivanje poda I u opisu pod možemo vidjeti error: Insuffient cpu (3). 
+<br><br>
+Dodjeljeni resursi – Resource Request :<br><br>
+
+    • CPU <br>
+    • MEMORY<br><br>
+
+Primjer pod: <br><br>
+
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+...Omitted Output...<br><br>
+
+spec:<br>
+&ensp; containers:<br><br>
+
+...Omitted Output...<br><br>
+&ensp; resources:<br>
+&ensp; &ensp; requests:<br>
+&ensp; &ensp; &ensp; memory: “1Gi”<br>
+&ensp; &ensp; &ensp; cpu: 1<br><br>
+
+...Omitted Output...<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Kod dodjeljivanja resoursa možemo I odrediti limit na način: <br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+...Omitted Output...<br><br>
+
+spec:<br>
+&ensp; containers:<br><br>
+
+...Omitted Output...<br>
+&ensp; resources:<br>
+&ensp; &ensp; requests:<br>
+&ensp; &ensp; &ensp; memory: “1Gi”<br>
+&ensp; &ensp; &ensp; cpu: 1<br><br>
+   
+&ensp; &ensp; limits:<br>
+&ensp; &ensp; &ensp; memory: “2Gi”<br>
+&ensp; &ensp; &ensp; cpu: 2<br><br>
+
+...Omitted Output...<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Šta se dogadja kad pod pokušava konzumirati više resursa nego šta mu je dodjeljeno.<br><br>
+
+CPU – Sustav throttle I osigurava da ne ide iznad dodjeljenih resursa <br><br>
+Memory – container može koristiti više od dodjeljenih resursa I ako konzumira konstantno više, pod će biti onda u stanju Terminate – OOM (Out Of Memory) error.<br><br>
+
+<b>Defaultna ponašanja CPU:</b><br><br>
+
+pod nema definirana ograničenja resursa po defaultu, znači da svaki pod može konzumirati sva dostupna resursa koja pruža radna stanica.
+<br><br>
+
+<b>NO REQUETS & NO LIMIT</b> – pod može konzumirati sve resurse (ako imamo dva ili više poda, pod koji konzumira sve resurse će spriječiti ostale da konzumiraju resurse).
+<br><br>
+<b>NO REQUETS & LIMIT</b> – pod može konzumirati resurse sve dok ne prekorači postavljene limite.
+<br><br>
+<b>REQUESTS & LIMITS</b> – Svaki pod će konzumirati postavljene resurse I može ići u konzumiranje resursa do postavljene granice limita.
+<br><br>
+<b>REQUEST & NO LIMIT</b> – Postavljeni su request resursi ali nisu postavljeni limiti.
+<br><br>
+
+<b>Defaultna ponašanja Memory:</b><br><br>
+
+<b>NO REQUESTS & NO LIMITS</b> – Jedan pod može konzumirati sve resurse (ako imamo dva ili više poda, pod koji konzumira sve resurse će spriječiti ostale da konzumiraju resurse).
+<br><br>
+<b>NO REQUESTS & LIMITS</b>
+pod može konzumirati resurse sve dok ne prekorači postavljene limite.
+<br><br>
+<b>REQUESTS & LIMITS </b>
+Svaki pod će konzumirati postavljene resurse I može ići u konzumiranje resursa do postavljene granice limita.
+<br><br>
+<b>REQUESTS & NO LIMITS</b>
+Postavljeni su request resursi ali nisu postavljeni limiti.
+<br><br>
+
+Limits CPU se određuje s <b>LimitRange.</b><br><br>
+
+Kreira se file. <br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+apiVersion: v1<br>
+kind: LimitRange<br>
+metadata:<br>
+  name: cpu-resource-constraint<br>
+spec:<br>
+<code style="color: red">
+&ensp; limits:<br>
+&ensp; - default:<br>
+&ensp; &ensp; cpu: 500m<br><br>
+</code>
+<code style="color: blue">     
+&ensp; &ensp; defaultRequest:<br>
+&ensp; &ensp; &ensp; cpu: 500m<br><br>
+</code>
+<code style="color: red">     
+&ensp; &ensp; max:<br>
+&ensp; &ensp; &ensp; cpu: “1”<br>
+</code>
+<code style="color: blue">     
+&ensp; &ensp; min:<br>
+&ensp; &ensp; &ensp; cpu: 100m<br><br>
+</code>      
+&ensp; &ensp; type: Container<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+RED – Limits<br>
+BLUE – Request <br><br>
+
+<b>Limit Memory</b> se određuje s LimitRange<br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+apiVersion: v1<br>
+kind: LimitRange<br>
+metadata:<br>
+  name: memory-resource-constraint<br>
+spec:<br>
+<code style="color: red">
+&ensp; limits:<br>
+&ensp; - default:<br>
+&ensp; &ensp; memory: 1Gi<br><br>
+</code>
+<code style="color: blue">     
+&ensp; &ensp; defaultRequest:<br>
+&ensp; &ensp; &ensp; memory: 1Gi<br><br>
+</code>
+<code style="color: red">     
+&ensp; &ensp; max:<br>
+&ensp; &ensp; &ensp; memory: 1Gi<br>
+</code>
+<code style="color: blue">     
+&ensp; &ensp; min:<br>
+&ensp; &ensp; &ensp; memory: 500mI<br><br>
+</code>      
+&ensp; &ensp; type: Container<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Za kraj postavlja se pitanje da li postoji način za ograničavanje resursa, na primjer da svi podovu u Clusteru ne smiju koristiti odrećenu količinu resursa.
+<br><br>
+Kreira se Resource Quotas na NameSpace nivou.
+<br><br>
+Ovo se zove hard limit.
+<br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+apiVersion: v1<br>
+kind: ResourceQuota<br>
+metadata:<br>
+&ensp; name: my-resource-quota<br>
+spec:<br>
+&ensp; hard:<br>
+&ensp; &ensp; requests.cpu: 4<br>
+&ensp; &ensp; requests.memory: 4Gi<br>
+&ensp; &ensp; limits.cpu: 10<br>
+&ensp; &ensp; limits.memory: 10Gi<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+
+
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="node_affinity.html">Prethodna</a> | <a href="daemon_sets.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

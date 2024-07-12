@@ -42,17 +42,26 @@
 <br>
 Zadatak 5:<br><br>
 Kreiraj deployment sa sljedećim svojstvima (deployment.yml):<br><br>
+<b>Deployment:</b><br>
 name: httpd-frontend<br>
+<b>pod</b><br>
+labels: <br>
+&ensp; name: httpd-frontend<br><br>
 replicas: 3<br>
 image: httpd:2.4-alpine<br><br>
 5.1. Zadatak<br><br>
-Kreiraj pod template sa sljedećim svojstvima :<br><br>
+Kreiraj pod template (mainfest file) sa sljedećim svojstvima :<br><br>
+<b>pod:</b><br>
 name: nginx-app<br> 
 image: nginx<br><br>
-5.3. Zadatak<br><br>
+
+
+5.2. Zadatak<br><br>
+Kreiraj deployment template sa sljedećim svojstvima:<br><br>
+<b>Deployment:</b><br>
 name: nginx<br> 
 image: nginx <br>
-replicas: 3<br><br>
+replicas: 3<br>
 <p style="color:red">Napomena:</p>
 NAPOMENA: Ovdje će se automatski mapirat kao:<br>
 

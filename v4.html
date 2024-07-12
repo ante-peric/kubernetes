@@ -1,0 +1,90 @@
+<!--
+   v4.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+			<h2><center>CaksSonicDeveloper© - Linux</center></h2>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<br>
+Zadatak 4:<br><br>
+Kreiraj Persistence Volume pv-definition.yml sa sljedećim svojstvima:<br>
+name: pv-vol1<br>
+accessModes: ReadWriteOnce<br>
+capacity:1Gi<br>
+hostPath: /tmp/data<br><br>
+4.1. Zadatak<br><br>
+Kreiraj Persistence Volume Claim pvc.yml sa sljedećim svojstvima:<br>
+name: myclaim<br>
+accessModes: ReadWriteOnce<br>
+storage: 500Mi<br><br>
+4.2. Zadatak<br><br>
+Kreiraj pod sa sljedećim svojstvima(pod.yml):<br>
+name: mypod<br>
+image: nginx <br>
+volumeMounts: /var/www/html<br>
+volumes: <br>
+name: web<br>
+persistentVolumeClaim: myclaim<br><br>
+
+4.3. Zadatak<br><br>
+Kreiraj Persistence Volume Claim pvc1.yml sa sljedećim svojstvima:<br>
+name: myclaim1<br>
+accessModes: ReadWriteOnce<br>
+storage: 500Mi<br><br>
+
+
+Kreiraj ReplicaSet sa sljedećim svojstvima (replica.yml):<br>
+<b>rs:</b><br>
+name: my-replica<br>
+<b>pod:</b><br>
+name: my-pod-ante<br>
+labels:<br>
+type: jsp<br>
+author: Ante-Peric<br>
+image: nginx<br> 
+volumeMounts: /var/www/html<br>
+volumes: <br>
+name: web<br>
+persistentVolumeClaim: myclaim<br>
+
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="v_zadaci.html"> Zadaci</a> | <a href="v_rijesenja.html">Riješenja</a></center> 
+<hr style="color:#ffb380">
+</html>

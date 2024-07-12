@@ -44,11 +44,11 @@ Zadatak 7:<br><br>
 
 Kreiraj ReplicaSet pomoću file – a (replica_set_1.yml) sa svojstvima:<br><br>
 
-ReplicaSet<br>
+<b>ReplicaSet</b><br>
 ime: replica-set-aplikacija<br>
 
 
-pod<br>
+<b>pod</b><br>
 ime: telefonski-imenik<br>
 labels:<br>
   type: jsp<br>
@@ -66,17 +66,18 @@ author: Ante-Peric<br><br>
 7.1. Zadatak<br><br>
 Kreiraj Service NodePort file - a 1_service_pod.yml sa sljedećim svojstvima:<br><br>
 
-name: ante-aplikacija-service<br><br>
+name: ante-aplikacija-service-1<br><br>
 
 pod Port - targetPort: 80<br><br>
 service Port – port: 80<br>
-node Port – nodePort – nodePort: 30009<br><br>
+node Port – nodePort – nodePort: 30011<br><br>
 
 Mapiraj sa selectorom ovaj service sa pod imena “replica-set-aplikacija” sa svim labelima koje smo kreirali.<br><br>
 7.2. Zadatak<br><br>
 Provjeri sa curl naredbom unutar host – a:<br>
 adresa service <br>
 adresa hosta <br>
+adresa hosta - browser<br>
 
 <p><a href="cc7rjesenje.html"> Riješenje</a></p>
 </body>

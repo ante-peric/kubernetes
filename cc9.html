@@ -73,6 +73,54 @@ image: httpd:alpine<br>
 namespace: default<br>
 Kreiraj service tipa ClusterIP imena httpd<br>
 port=80<br><br>
+9.7. Zadatak<br><br>
+Kreriraj ReplicaSet sa sljedećim svojstvima (ljubica.yml):<br>
+<b>ReplicaSet</b><br>
+name: ljubica<br>
+label: jsp
+author: Ante-Peric<br>
+<b>pod</b><br>
+name: ljubica-app<br>
+labels:<br>
+type: jsp<br>
+author: Ante-Peric<br>
+container name: nginx-container<br>
+image: nginx<br>
+replicas: 3<br>
+<b>selector</b><br>
+svi labeli<br><br>
+<b>imperative command</b><br>
+Kreiraj service tipa NodePort sa svojstvima:<br>
+port: 80<br>
+targetPort: 80<br>
+<p style="color: red"> napomena:</p>
+NodePort: biti će dodjeljen automatski<br><br>
+9.8. Zadatak<br><br>
+Kreiraj Deployment sa sljedećim svojstvima (andja.yml).<br>
+<b>Deployment:</b>
+name: andja<br>
+labels:<br>
+type: http<br>
+author: Ante-Peric<br>
+<b>pod:</b><br>
+name: andja-app<br>
+labels:<br>
+type: jsp<br>
+author: Ante-Peric<br>
+container name: nginx-container<br>
+image: nginx<br>
+replicas: 3<br>
+selector: sve iz labels<br><br> 
+
+<b>imperative command</b><br>
+Kreiraj service tipa NodePort sa svojstvima:<br>
+port: 80<br>
+targetPort: 80<br>
+<p style="color: red"> napomena:</p>
+NodePort: biti će dodjeljen automatski<br><br>
+
+
+
 
 
 

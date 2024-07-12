@@ -203,6 +203,7 @@ $ kubectl create deployment redis-deploy --image=redis --replicas=2 --namespace=
     <tbody></tbody>
 </table>
 </div><br>
+9.6. Zadatak<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -235,6 +236,220 @@ $ kubectl run httpd --image=httpd:alpine --namespace=default
 
 <code style="color: black">
 $ kubectl expose pod httpd  --name=httpd --port=80
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+9.7. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #black">
+vim ljubica.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: ReplicaSet<br>
+metadata: <br>
+&ensp; &ensp; name: ljubica<br>
+&ensp; &ensp; labels:<br>
+&ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; author: Ante-Peric<br><br>
+
+spec:<br>
+&ensp; template:<br>
+&ensp;&ensp; metadata:<br>
+&ensp;&ensp;&ensp; name: ljubica-pod<br>
+&ensp;&ensp;&ensp; labels:<br>
+&ensp;&ensp;&ensp;&ensp; type: jsp<br>
+&ensp;&ensp;&ensp;&ensp; author: Ante-Peric<br>
+&ensp;&ensp; spec:<br>
+&ensp;&ensp;&ensp; containers:<br>
+&ensp;&ensp;&ensp;&ensp; - name: nginx-container<br>
+&ensp; &ensp; &ensp;    image: nginx<br>
+&ensp; replicas: 3<br>
+&ensp; selector:<br>
+&ensp; &ensp; matchLabels:<br>
+&ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; author: Ante-Peric<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl create -f ljubica.yml 
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl expose replicaset ljubica --type=NodePort --port=80 --target-port=80
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+
+
+9.8. Zadatak<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+vim andja.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+apiVersion: apps/v1<br>
+kind: Deployment<br>
+metadata:<br>
+&ensp; name: andja<br>
+&ensp; labels:<br>
+&ensp; &ensp;type: http<br>
+&ensp; &ensp; author: Ante-Peric<br><br>
+
+spec:<br>
+&ensp; template:<br>
+&ensp; &ensp; metadata:<br>
+&ensp; &ensp; &ensp; name: andja-app<br>
+&ensp; &ensp; &ensp; labels:<br>
+&ensp; &ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; &ensp; author: Ante-Peric<br><br>
+
+&ensp; &ensp; spec:<br>
+&ensp; &ensp; &ensp; containers:<br>
+&ensp; &ensp; &ensp; &ensp; - name: nginx-container<br>
+&ensp; &ensp; &ensp; &ensp; &ensp; image: nginx<br><br>
+
+&ensp; replicas: 3<br>
+&ensp; selector:<br>
+&ensp; &ensp; matchLabels:<br>
+&ensp; &ensp; &ensp; type: jsp<br>
+&ensp; &ensp; &ensp; author: Ante-Peric<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl create -f andja.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl expose deployment andja --type=NodePort --port=80 --target-port=80
 </code>
 
             </td>

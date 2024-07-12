@@ -198,14 +198,14 @@ $ vim 1_service_pod.yml
 apiVersion: v1<br>
 kind: Service<br>
 metadata:<br>
-&ensp; name: ante-aplikacija-service<br><br>
+&ensp; name: ante-aplikacija-service-1<br><br>
 
 spec:<br>
 &ensp; type: NodePort<br>
 &ensp; ports:<br>
 &ensp; &ensp; - targetPort: 80<br>
 &ensp; &ensp; &ensp; port: 80<br>
-&ensp; &ensp; &ensp; nodePort: 30008<br><br>
+&ensp; &ensp; &ensp; nodePort: 30011<br><br>
   
 &ensp; selector:<br>
 &ensp; &ensp; type: jsp<br>
@@ -219,7 +219,31 @@ spec:<br>
     <tbody></tbody>
 </table>
 </div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl create -f 1_service_pod.yml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
 7.2. Zadatak<br><br>
+Provjeravamo na kojoj radnoj stanici je su podovi razvijeni i na kojem service<br><br>
+pods<br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -231,9 +255,34 @@ spec:<br>
             <td>
 
 <code style="color: black">
-$ kubectl get services<br>
-NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE<br>
-ante-aplikacija-service   NodePort    10.106.70.198   <none>        80:30008/TCP   44m<br>
+[ante@controlkube ~]$ kubectl get pods -o wide | { head -1; grep -i "replica-set-aplikacija*"; }<br><br>
+NAME                              &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; READY   &ensp;&ensp;&ensp;&ensp; STATUS    &ensp;&ensp;&ensp;&ensp; RESTARTS        &ensp;&ensp;&ensp;&ensp; AGE    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; IP              &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;NODE                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp;&ensp; NOMINATED NODE   &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;READINESS GATES<br>
+replica-set-aplikacija-5wbpt      &ensp; 1/1     &ensp;&ensp;&ensp;&ensp;&ensp;Running   &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;0               &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;73m    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;172.17.172.162   &ensp;&ensp;&ensp;&ensp;&ensp;worker2.caksonic.local   &ensp;&ensp;&ensp;none           &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;none<br>
+replica-set-aplikacija-bqbpl      &ensp; 1/1     &ensp;&ensp;&ensp;&ensp;&ensp;Running   &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;0               &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;73m    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;172.17.172.157   &ensp;&ensp;&ensp;&ensp;&ensp;worker1.caksonic.local   &ensp;&ensp;&ensp;none           &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;none<br>
+replica-set-aplikacija-ttgkh      &ensp; 1/1     &ensp;&ensp;&ensp;&ensp;&ensp;Running   &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;0               &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;73m    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;172.17.111.156   &ensp;&ensp;&ensp;&ensp;&ensp;worker1.caksonic.local   &ensp;&ensp;&ensp;none           &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;none<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+service<br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+kubectl get services<br>
+NAME              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;  TYPE        &ensp; &ensp; &ensp; &ensp; &ensp; CLUSTER-IP      &ensp; &ensp; &ensp; &ensp; EXTERNAL-IP   &ensp; &ensp; PORT(S)        &ensp; &ensp; AGE<br>
+ante-aplikacija   &ensp; NodePort     &ensp; &ensp; 192.168.2.194   &ensp; &ensp; &ensp; none        &ensp; &ensp; &ensp; &ensp; &ensp; 80:30011/TCP   35m<br>
 
 </code>
 
@@ -243,6 +292,12 @@ ante-aplikacija-service   NodePort    10.106.70.198   <none>        80:30008/TCP
     <tbody></tbody>
 </table>
 </div><br>
+
+
+Vidimo da su podovi podjeljeni na worker1 & worker2<br><br>
+<b>worker1.caksonic.local</b><br><br>
+Provjeravamo dostupnost s worker1.caksonic.local - pod adresa<br><br>
+
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -254,7 +309,9 @@ ante-aplikacija-service   NodePort    10.106.70.198   <none>        80:30008/TCP
             <td>
 
 <code style="color: black">
-$ curl http://10.106.70.198
+curl http://172.17.172.157
+<br>
+curl http://172.17.172.156
 </code>
 
             </td>
@@ -263,6 +320,7 @@ $ curl http://10.106.70.198
     <tbody></tbody>
 </table>
 </div><br>
+Servis adresa:<br><br>
 <div class="table1_component" role="region" tabindex="0">
 <table>
 
@@ -274,7 +332,95 @@ $ curl http://10.106.70.198
             <td>
 
 <code style="color: black">
-$ curl http://192.168.122.120:30008 
+curl http://192.168.2.194
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Globalna pristupačnost:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+curl http://192.168.122.121:30011
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+<b>worker2.caksonic.local</b><br><br>
+Provjeravamo dostupnost s worker2.caksonic.local - pod adresa<br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+ curl http://172.17.111.162
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Servis adresa:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+curl http://192.168.2.194
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Globalna pristupačnost:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: black">
+curl http://192.168.122.122:30011
 </code>
 
             </td>
@@ -283,6 +429,9 @@ $ curl http://192.168.122.120:30008
     <tbody></tbody>
 </table>
 </div>
+
+
+
 
 
 

@@ -112,13 +112,16 @@ vim /etc/yum.repos.d/kubernetes.repo
             <td>
 <p style="color: #2ecc71">
 
-<code>[kubernetes]<br>
+<code>
+[kubernetes]<br>
 name=Kubernetes<br>
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/<br>
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/<br>
 enabled=1<br>
 gpgcheck=1<br>
-gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key<br>
-exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni </p></code></td>
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key<br>
+exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni<br>
+
+</code></td>
         </tr>
     </thead>
     <tbody></tbody>

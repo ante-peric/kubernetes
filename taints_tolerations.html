@@ -1,0 +1,322 @@
+<!--
+   taints_tolerations.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>4. Taints I Tolerations </P></b>
+<br>
+Ovaj dio se  bazira na odnosu Node – Pod I kako se mogu kreirati veze koji Node može biti domaćin kojem pod – u.<br><br>
+
+<b>Taints</b> se dodaju na <b>node</b> a <b>tolerations</b> na <b>pod</b>. <br><br>
+
+U defaultnom dodavanju scheduler raspodjeljuje podove na nodove na način da ne opterećuje ni jedan node. U slučaju da mi želimo da pojedini pod – I ne budu prisutni na određenim nodovim tada koristimo  taints. 
+<br><br>
+Pretpostavimo da imamo dodjeljenje resurse kao što je node1 za određeni projekt - pod (aplikacija u containeru).
+<br><br>
+Primjer:<br><br>
+
+Imamo tri Noda:<br>
+ <ul>
+  <li>node1</li>
+  <li>node2</li>
+  <li>node3</li>
+</ul> 
+<br><br>
+
+Imamo četri containera:
+<br>
+ <ul>
+  <li>A</li>
+  <li>B</li>
+  <li>C</li>
+  <li>D</li>
+</ul> 
+<br><br>
+U ovome primjeru dopustit ćemo containeru D da bude na node1.<br>
+<b>Node1</b><br><br>
+Dodjeljivanje <b>tains (node):</b><br><br>
+Prvo šta radimo je onemogućavamo nodove (node1) za prihvaćanje te aplikacije (container – a) tako da dodjeljujemo taints na taj node – node1. 
+<br>Sve aplikacije koje budu preko schedulera postavljene na node1 biti će odbijene, uključujući I container D.
+
+Dodjeljivanje <b>tolerations (pod):</b> <br><br>
+
+Drugo specificiramo koji su nodovi tolerantni da prihvate aplikaciju (container). Dodajemo toleranciju na aplikaciju (container) D.
+<br><br>
+Sad svi containeri će biti rasporedjeni na nodove osim containera D koji će biti smješten na node1.
+<br><br>
+Syntax naredbe:<br><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl taint nodes node-name key=value:taint-effect
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Imamo tri tains efekta:<br>
+
+    • NoSchedule – na nodu neće biti podova<br>
+      
+    • PreferNoScheduler – sustav će pokušati izbjeći dodavanje pod <br>
+      
+    • NoExecute<br><br>
+Ovdje još možemo dodati da postoji I četvrta opcija kad node nema tains <br><br>
+
+Provjera Taints:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl describe node controlkube.caksonic.local | grep Taints<br>
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+ kubectl describe node worker1.caksonic.local | grep Taints<br>
+Taints:             none
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+ kubectl describe node worker2.caksonic.local | grep Taints<br>
+Taints:             none
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+
+
+Primjer:<br><br>
+Dodavanja taint:<br>
+<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl taint nodes node1 app=blue:NoSchedule
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Dodavanja tolerancija je dodana u pod – a.<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+apiVersion: v1<br>
+kind: Pod <br>
+metadata:<br>
+&emsp; name: my-app<br><br>
+
+spec:<br>
+&emsp; containers:<br>
+&emsp; &emsp; - name: nginx-conatainer<br>
+&emsp; &emsp; &emsp; image: nginx<br>
+&emsp; tolerations:<br>
+&emsp; &emsp; - key: “app”<br>
+&emsp; &emsp; &emsp; operator: “Equal”<br>
+&emsp; &emsp; &emsp; value: “blue”<br>
+&emsp; &emsp; &emsp; effect: “NoSchedule”<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Ako želimo ukloniti taint provjeravamo koji posjeduje s “desribe” naredbom I uklanjamo:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl describe node controlkube.caksonic.local | grep Taints
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+<br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl taint node controlkube.caksonic.local node-role.kubernetes.io/control-plane:NoSchedule-
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="s_labels_selectors.html">Prethodna</a> | <a href="node_selector.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

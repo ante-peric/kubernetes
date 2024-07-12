@@ -1,0 +1,384 @@
+<!--
+   v_koristenje_pvc.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>3.2.2. Korištenje PVC u Pod - u </P></b>
+<br>
+Kad se kreira PVC može se koristiti u pod definiciji u polju persistentVolumeClaim u volumes kao u primjeru. <br><br>
+
+Primjer:<br><br>
+
+Kreiramo Persistent Volume:<br><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+vim pv-definition.yaml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kind: PersistentVolume<br>
+apiVersion: v1<br>
+metadata:<br>
+&emsp; name: pv-vol1<br>
+spec:<br>
+&emsp; &emsp; accessModes: [ "ReadWriteOnce" ]<br><br>
+&emsp; &emsp; capacity:<br>
+&emsp;&emsp; &emsp; storage: 1Gi<br><br>
+&emsp; &emsp; hostPath:<br>
+&emsp; &emsp; &emsp; path: /tmp/data<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+<br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl create -f pv-definition.yaml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Kreiramo PVC<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+vim pvc-definition.yaml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kind: PersistentVolumeClaim<br>
+apiVersion: v1<br>
+metadata:<br>
+&emsp; name: myclaim<br>
+spec:<br>
+&emsp; accessModes: [ "ReadWriteOnce" ]<br>
+&emsp; resources:<br>
+&emsp; &emsp; requests:<br>
+&emsp; &emsp; &emsp; storage: 1Gi<br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl create -f pvc-definition.yaml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Kreiramo pod:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+vim pod-definition.yaml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+apiVersion: v1<br>
+kind: Pod<br>
+metadata:<br>
+&emsp; name: mypod<br>
+spec:<br>
+&emsp; containers:<br>
+&emsp; &emsp; - name: myfrontend<br>
+&emsp; &emsp; &emsp; image: nginx<br><br>
+&emsp; &emsp; &emsp; volumeMounts:<br>
+&emsp; &emsp; &emsp; - mountPath: "/var/www/html"<br>
+&emsp; &emsp; &emsp; &emsp; name: web<br><br>
+&emsp; volumes:<br>
+&emsp; &emsp; - name: web<br>
+&emsp; &emsp; &emsp; persistentVolumeClaim:<br>
+&emsp; &emsp; &emsp; &emsp; claimName: myclaim<br>
+</code>
+<br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl create -f pod-definition.yaml
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Provjera:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl get pod,pvc,pv
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+<p style="color: red">
+NAPOMENA: Isti princip je kod kreiranja ReplicaSet I Deployment. Dodajemo u pod template dio.
+</p>
+Zaključak:<br><br>
+
+Prvo se kreira <b>Persistent Volume</b>, važna oznaka koja se koristi za povezivanje sa Persistent Volume Claim:<br><br>
+
+Na primjer:<br>
+<code> 
+accessModes:<br>
+<code style="color: red">&emsp; - ReadWriteOnce</code><br>
+capacity:<br>
+<code style="color: red">&emsp; storage: 500Mi</code><br><br>
+</code> 
+
+
+Kod kreiranja <b>Persistent Volume Claim</b> uključujemo oznake iz Persistent Volume:<br><br>
+
+Na primjer:<br>
+<code> 
+accessModes:<br>
+<code style="color: red"> &emsp; - ReadWriteOnce</code><br> 
+capacity:<br>
+<code style="color: red">&emsp; storage: 500Mi</code><br><br> 
+</code>
+
+I kreira sa ime Persistent Volume Claim<br><br>
+<code style="color: red"> 
+name: myclaim<br><br>
+</code>
+Kad se kreira <b>pod</b> uključujemo Persistance Volume Claim ime u pod <br><br>
+<code>
+claimName: myclaim <br><br>
+</code>
+
+
+
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="v_pvc.html">Prethodna</a> | <a href="v_storageclassess.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>

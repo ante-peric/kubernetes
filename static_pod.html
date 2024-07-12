@@ -1,0 +1,199 @@
+<!--
+   static_pod.html
+   
+   Copyright 2024 Ante Perić <ante@peric.no-ip.info>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>CSD</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.38" />
+</head>
+
+<body>
+	<hr style="color:#ffb380">
+     <center>Kubernetes - Osobna Skripta</center>   
+	<br>	
+	<hr style="color:#ffb380">
+<center><p><a href="index.html">Početna</a></center> 
+<hr style="color:#ffb380">
+<P STYLE="margin-bottom: 0in; line-height: 100%"><b>9. Static PODs</P></b>
+<br>
+
+Kubelet može neovisno održavati pod. Potrebno je imati instaliran kubelet I docker (ili containerd).<br><br>
+Kubelet može čitati pod definicijski file bez API servera tako da se konfiguracijski pod file smjesti u : /etc/kubernetes/mainfest direktorij.<br>
+ Ovako kreirani PODs se nazivaju Statični Podovi. 
+<br><br>
+Samo pod se može kreirati na ovakav način, tj ne može se kreirati ReplicaSet, Deployment itd.
+<br><br>
+Nije nužno da se koristi /etc/kubernetes/mainfest direktorij, mogu se koristiti I drugi direktoriju al se mora izmjeniti mainfest-path koji će upućivati na taj direktorij.
+<br><br>
+Ili se kreira file sa sadržajem – na primjer:<br><br>
+<style>
+.table1_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table1_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table1_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table1_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+}
+
+.table1_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+</style>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+StaticPodPath: /etc/kubernetes/mainfest
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Za provjeru pod -a koristimo naredbu:<br><br>
+
+<b>Docker:</b><br>
+
+docker ps <br><br>
+
+<b>containerD:</b><br>
+
+nerdctl ps <br><br>
+
+<b>cri – o:</b><br>
+
+crictl ps<br><br>
+Razlika između Static Pods & Daemon Set <br><br>
+
+<b>Static Pod</b> - Kreiran od strane Kubelet, Razvija Control Plane komponentu kao Static Pod, ignoriran od strane Kube-Scheduler 
+<br><br>
+<b>DaemonSet</b> – Kreiran od strane Kube-API servera (DaemonSet Controller), Razvija Montorig Agents, Logging na nodovima, ignoriran od strane Kube-Scheduler 
+<br><br>
+Kod provjere Stati pod uvijek gledamo ime poda, uglavnom sadrži ime noda kao u primjeru:<br><br>
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+kubectl get pods -A<br>
+NAMESPACE      NAME                                   READY   STATUS    RESTARTS AGE<br>
+kube-flannel   kube-flannel-ds-cqbnt                  1/1     Running   0 11m<br><br>
+
+kube-flannel   kube-flannel-ds-pqmrx                  1/1     Running   0 10m<br><br>
+
+kube-system    coredns-768b85b76f-gpsz2               1/1     Running   0 11m<br><br>
+
+kube-system    coredns-768b85b76f-pftc4               1/1     Running   0 11m<br><br>
+
+<b>kube-system    etcd-controlplane                      1/1     Running   0 11m</b><br><br>
+
+<b>kube-system    kube-apiserver-controlplane            1/1     Running   0 11m</b><br><br>
+
+<b>kube-system    kube-controller-manager-controlplane   1/1     Running   0 11m</b><br><br>
+
+kube-system    kube-proxy-44qrn                       1/1     Running   0 11m<br><br>
+
+kube-system    kube-proxy-k9485                       1/1     Running   0 10m<br><br>
+
+<b>kube-system    kube-scheduler-controlplane            1/1     Running   0 11m</b><br><br>
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+Uvijek možemo provjeriti koji je defaultni direktorij za konfiguracijske filove na način:<br><br>
+
+<div class="table1_component" role="region" tabindex="0">
+<table>
+
+    <thead>
+        <tr>
+   
+        </tr>
+        <tr>
+            <td>
+
+<code style="color: #2ecc71">
+cat /var/lib/kubelet/config.yaml | grep -i staticPodPath
+</code>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><br>
+
+
+
+
+</body>
+<hr style="color:#ffb380">
+<center><p><a href="daemon_sets.html">Prethodna</a> | <a href="multiple_scheduler.html">Sljedeća</a></center> 
+<hr style="color:#ffb380">
+</html>
